@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "jest": "^26.5.2",
     "testcafe": "^1.9.4"
   }
 }
