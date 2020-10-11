@@ -1,11 +1,11 @@
-export default class Discographies {
+export default class Timelines {
   constructor() {
-    this.list = [];
+    this.discographies = [];
     this.earliestRelease = 3000;
     this.latestRelease = 0;
   }
   add(discography) {
-    this.list.push(discography);
+    this.discographies.push(discography);
     this.earliestRelease =
       discography.earliestRelease < this.earliestRelease
         ? discography.earliestRelease
