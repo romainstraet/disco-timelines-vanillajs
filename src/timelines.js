@@ -17,31 +17,37 @@ export default class Timelines {
         : this.latestRelease;
   }
 
-  render() {
-    const el = document.createElement("div");
-    el.id = "timelines";
-    this.discographies.forEach((discography, i) => {
-      const childEl = document.createElement("div");
-      childEl.setAttribute("data-timeline", i);
-      childEl.textContent = discography.name;
-      el.appendChild(childEl);
-    });
-    const axisEl = document.createElement("div");
-    axisEl.setAttribute("data-timeline", "axis");
+  generateYearsArray() {
     const offset = 1;
     const yearsDiff =
       this.latestRelease + offset - (this.earliestRelease - offset) + 1;
-    const years = Array.from(
+    return Array.from(
       new Array(yearsDiff),
-      (x, i) => i + (this.earliestRelease - offset)
+      (_, i) => i + (this.earliestRelease - offset)
     );
+  }
+
+  renderTimelineAxis() {
+    const axisEl = document.createElement("div");
+    axisEl.setAttribute("data-timeline", "axis");
+    const years = this.generateYearsArray();
     years.forEach((year) => {
       const childEl = document.createElement("div");
       childEl.textContent = year;
       axisEl.appendChild(childEl);
     });
-    el.appendChild(axisEl);
+    return axisEl;
+  }
 
+  render() {
+    const el = document.createElement("div");
+    el.id = "timelines";
+    this.discographies.forEach((discography) => {
+      const discoEl = discography.render();
+      el.appendChild(discoEl);
+    });
+    const axisEl = this.renderTimelineAxis();
+    el.appendChild(axisEl);
     return el;
   }
 }

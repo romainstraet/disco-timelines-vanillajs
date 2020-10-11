@@ -7,9 +7,9 @@ test('On launch"', async (browser) => {
     // A user, let's call him James, go on the website
     // He notices that it already shows 2 albums timelines
     // One with the Beatles discography and one with the Rolling Stones discography
-    .expect(Selector('[data-timeline="0"]').innerText)
+    .expect(Selector('[data-timeline="the-beatles"]').innerText)
     .contains("The Beatles")
-    .expect(Selector('[data-timeline="1"]').innerText)
+    .expect(Selector('[data-timeline="the-rolling-stones"]').innerText)
     .contains("The Rolling Stones")
 
     // He notices an horizontal axis with the years

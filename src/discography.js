@@ -22,4 +22,14 @@ export default class Discography {
         releaseYear > this.latestRelease ? releaseYear : this.latestRelease;
     });
   }
+
+  render() {
+    const el = document.createElement("div");
+    el.setAttribute(
+      "data-timeline",
+      this.name.split(" ").join("-").toLowerCase()
+    );
+    el.textContent = this.name;
+    return el;
+  }
 }
