@@ -28,29 +28,29 @@ test("set earliest and latest release year of all discographies", () => {
 
 test("generateYearsArray()", () => {
   const yearsArr = timelines.generateYearsArray();
-  expect(yearsArr[0]).toBe(1962); // 1 year before earliest release
-  expect(yearsArr[yearsArr.length - 1]).toBe(2021); // A year after latest release
-  expect(yearsArr.length).toBe(2021 - 1962 + 1);
+  expect(yearsArr[0]).toBe(1963);
+  expect(yearsArr[yearsArr.length - 1]).toBe(2020);
+  expect(yearsArr.length).toBe(2020 - 1963 + 1);
 });
 
-test("renderTimelineAxis()", () => {
+test("renderTimelineAxis() output a DOM node", () => {
   const outputEl = timelines.renderTimelineAxis();
-  expect(outputEl.getAttribute("data-timeline")).toBe("axis");
-  expect(outputEl.innerHTML).toContain("1962");
+  expect(outputEl.dataset.timeline).toBe("axis");
+  expect(outputEl.innerHTML).toContain("1963");
   expect(outputEl.innerHTML).toContain("1986");
-  expect(outputEl.innerHTML).toContain("2021");
+  expect(outputEl.innerHTML).toContain("2020");
+  expect(outputEl.className).toContain("timeline");
 });
 
 test("render() output a DOM node", () => {
   const outputEl = timelines.render();
-  const childNodesArray = Array.from(outputEl.childNodes);
-  function findDataTimelineAttribute(value) {
-    return childNodesArray.find(
-      (el) => el.getAttribute("data-timeline") == value
+  function findAttribute(attr, value) {
+    return Array.from(outputEl.childNodes).find(
+      (el) => el.dataset[attr] == value
     );
   }
   expect(outputEl.id).toBe("timelines");
-  expect(findDataTimelineAttribute("axis")).toBeTruthy();
-  expect(findDataTimelineAttribute("the-beatles")).toBeTruthy();
-  expect(findDataTimelineAttribute("the-rolling-stones")).toBeTruthy();
+  expect(findAttribute("timeline", "axis")).toBeTruthy();
+  expect(findAttribute("discography", "the-beatles")).toBeTruthy();
+  expect(findAttribute("discography", "the-rolling-stones")).toBeTruthy();
 });

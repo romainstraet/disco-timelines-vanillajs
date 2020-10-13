@@ -1,0 +1,28 @@
+body {
+  margin: 0px;
+}
+#timelines {
+  width: 6000px;
+}
+
+.timeline {
+  height: 64px;
+  display: flex;
+}
+
+.first-col {
+  width: 200px;
+  height: 64px;
+}
+
+.album {
+  height: 64px;
+  width: 64px;
+  border-radius: 5px;
+  position: absolute;
+}
+
+.year {
+  width: 64px;
+  text-align: center;
+}

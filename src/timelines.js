@@ -18,21 +18,22 @@ export default class Timelines {
   }
 
   generateYearsArray() {
-    const offset = 1;
-    const yearsDiff =
-      this.latestRelease + offset - (this.earliestRelease - offset) + 1;
-    return Array.from(
-      new Array(yearsDiff),
-      (_, i) => i + (this.earliestRelease - offset)
-    );
+    const yearsDiff = this.latestRelease - this.earliestRelease + 1;
+    return Array.from(new Array(yearsDiff), (_, i) => i + this.earliestRelease);
   }
 
   renderTimelineAxis() {
     const axisEl = document.createElement("div");
-    axisEl.setAttribute("data-timeline", "axis");
+    axisEl.dataset.timeline = "axis";
+    axisEl.className = "timeline";
+    const axisFirstColEl = document.createElement("div");
+    axisFirstColEl.className = "first-col";
+    axisFirstColEl.textContent = "The years";
+    axisEl.appendChild(axisFirstColEl);
     const years = this.generateYearsArray();
     years.forEach((year) => {
       const childEl = document.createElement("div");
+      childEl.className = "year";
       childEl.textContent = year;
       axisEl.appendChild(childEl);
     });
@@ -40,14 +41,12 @@ export default class Timelines {
   }
 
   render() {
-    const el = document.createElement("div");
-    el.id = "timelines";
+    const timelinesEl = document.createElement("div");
+    timelinesEl.id = "timelines";
     this.discographies.forEach((discography) => {
-      const discoEl = discography.render();
-      el.appendChild(discoEl);
+      timelinesEl.appendChild(discography.render());
     });
-    const axisEl = this.renderTimelineAxis();
-    el.appendChild(axisEl);
-    return el;
+    timelinesEl.appendChild(this.renderTimelineAxis());
+    return timelinesEl;
   }
 }

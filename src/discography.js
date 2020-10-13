@@ -1,3 +1,5 @@
+import { normalizedString } from "./helpers";
+
 export default class Discography {
   constructor() {
     this.name = "";
@@ -9,6 +11,11 @@ export default class Discography {
   fromSpotifyJsonData(spotifyJsonData) {
     this.name = spotifyJsonData.items[0].artists[0].name;
     this.albumList = spotifyJsonData.items;
+    this.albumList.sort((a, b) => {
+      const aYear = parseInt(a.release_date.substring(0, 4));
+      const bYear = parseInt(b.release_date.substring(0, 4));
+      return aYear - bYear;
+    });
     this.setEarliestandLatestReleaseYear();
     return this;
   }
@@ -23,13 +30,36 @@ export default class Discography {
     });
   }
 
-  render() {
-    const el = document.createElement("div");
-    el.setAttribute(
-      "data-timeline",
-      this.name.split(" ").join("-").toLowerCase()
+  renderAlbum(album) {
+    const releaseYear = parseInt(album.release_date.substring(0, 4));
+
+    const albumNode = document.createElement("div");
+    albumNode.dataset.discographyAlbum = album.id;
+    albumNode.className = "album";
+    albumNode.style += `position: absolute; left: ${
+      (releaseYear - this.earliestRelease) * 64 + 200
+    }px;`;
+    console.log(
+      this.albumList.length,
+      album.artists[0].name,
+      releaseYear,
+      this.earliestRelease
     );
-    el.textContent = this.name;
-    return el;
+    albumNode.innerHTML = `<img src="${album.images[2].url}">`;
+    return albumNode;
+  }
+
+  render() {
+    const discographyEl = document.createElement("div");
+    discographyEl.dataset.discography = normalizedString(this.name);
+    discographyEl.className = "timeline";
+    const nameEl = document.createElement("div");
+    nameEl.textContent = this.name;
+    nameEl.className = "first-col";
+    discographyEl.appendChild(nameEl);
+    this.albumList.forEach((album) => {
+      discographyEl.appendChild(this.renderAlbum(album));
+    });
+    return discographyEl;
   }
 }

@@ -14,8 +14,16 @@ test("instantiate class with spotify json data", () => {
   expect(beatlesDisco.latestRelease).toBe(2019);
 });
 
+test("renderAlbum()", () => {
+  const album = beatlesData.items[0];
+  const outputEl = beatlesDisco.renderAlbum(album);
+  expect(outputEl.dataset.discographyAlbum).toBe(album.id);
+  expect(outputEl.innerHTML).toContain(album.images[2].url);
+});
+
 test("render() output a DOM node", () => {
   const outputEl = beatlesDisco.render();
-  expect(outputEl.getAttribute("data-timeline")).toBe("the-beatles");
+  expect(outputEl.getAttribute("data-discography")).toBe("the-beatles");
+  expect(outputEl.className).toContain("timeline");
   expect(outputEl.innerHTML).toContain("The Beatles");
 });
