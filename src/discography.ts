@@ -1,6 +1,10 @@
 import { normalizedString } from "./helpers";
 
 export default class Discography {
+  name: string;
+  earliestRelease: number;
+  latestRelease: number;
+  albumList: never[];
   constructor() {
     this.name = "";
     this.earliestRelease = 3000;
@@ -39,12 +43,7 @@ export default class Discography {
     albumNode.style += `position: absolute; left: ${
       (releaseYear - this.earliestRelease) * 64 + 200
     }px;`;
-    console.log(
-      this.albumList.length,
-      album.artists[0].name,
-      releaseYear,
-      this.earliestRelease
-    );
+
     albumNode.innerHTML = `<img src="${album.images[2].url}">`;
     return albumNode;
   }

@@ -1,10 +1,17 @@
+"use strict";
+
 module.exports = {
-  entry: "./src/index.js",
+  devtool: "inline-source-map",
+  entry: "./src/index.ts",
   output: {
     filename: "main.js",
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        loader: "ts-loader",
+      },
       {
         test: /\.m?js$/,
         exclude: /node_modules/,
@@ -16,5 +23,8 @@ module.exports = {
         },
       },
     ],
+  },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"],
   },
 };
