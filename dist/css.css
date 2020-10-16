@@ -6,21 +6,18 @@ body {
   display: flex;
 }
 
+.item {
+  width: 100px;
+  height: 100px;
+}
+
 .first-col {
   flex-basis: 200px;
   background-size: cover;
   background-position: center center;
+  color: white;
 }
 
-.item {
-  width: 64px;
-  height: 64px;
-}
-
-#timelines {
-  width: 6000px;
-  overflow: auto;
-}
 /*
 .timeline {
   height: 64px;

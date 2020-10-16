@@ -37,7 +37,16 @@ export default class Artist {
       this.discography.push(album);
       this.checkIfEarlierOrLaterRelease(album);
     }
+    this.cleanDuplicates();
     this.sortDiscographyChronologically();
+    return this;
+  }
+
+  private cleanDuplicates() {
+    const unique = this.discography
+      .map((e) => e.name)
+      .map((v, i, arr) => arr.indexOf(v) == i);
+    this.discography = this.discography.filter((_, i) => unique[i]);
     return this;
   }
 

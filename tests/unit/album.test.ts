@@ -7,7 +7,7 @@ describe("Album class", () => {
       let beatlesAlbum = beatlesAlbums.items[0];
       let album = new Album(beatlesAlbum);
       expect(album.id).toBe(beatlesAlbum.id);
-      expect(album.name).toBe(beatlesAlbum.name);
+      expect(album.name).toBe("Abbey Road");
       expect(album.releaseYear).toBe(2019);
       expect(album.releaseMonth).toBe(9);
       expect(album.covers.urlLarge).toBe(beatlesAlbum.images[0].url);
@@ -20,6 +20,17 @@ describe("Album class", () => {
       let album = new Album(beatlesAlbum);
       expect(album.releaseYear).toBe(2000);
       expect(album.releaseMonth).toBe(0);
+    });
+
+    test('Album name should be cleaned (no "remastered" or "deluxe edition"...)', () => {
+      let beatlesAlbum = beatlesAlbums.items[0];
+      let album = new Album(beatlesAlbum);
+      expect(album.name).toBe("Abbey Road");
+      expect(album.name).not.toBe("Abbey Road (Super Deluxe Edition)");
+      beatlesAlbum.name = "Please Please Me (Remastered)";
+      let album2 = new Album(beatlesAlbum);
+      expect(album2.name).toBe("Please Please Me");
+      expect(album2.name).not.toBe("Abbey Road (Super Deluxe Edition)");
     });
   });
 

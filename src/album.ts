@@ -18,12 +18,26 @@ export default class Album {
 
   constructor(spotifyAlbum: ISpotifyAlbum) {
     this.id = spotifyAlbum.id;
-    this.name = spotifyAlbum.name;
+    this.name = this.cleanName(spotifyAlbum.name);
     this.releaseYear = parseInt(spotifyAlbum.release_date.substr(0, 4));
     this.releaseMonth = this.getReleaseMonth(spotifyAlbum.release_date);
     this.spotifyUri = spotifyAlbum.uri;
     this.covers = new AlbumCover(spotifyAlbum.images);
     return this;
+  }
+
+  private cleanName(name: string) {
+    let arr = name.split(/[()]+/).filter((e) => e);
+    if (
+      arr[arr.length - 1].toLowerCase().includes("deluxe") ||
+      arr[arr.length - 1].toLowerCase().includes("remaster") ||
+      arr[arr.length - 1].toLowerCase().includes("re-master")
+    ) {
+      arr.pop();
+      return arr.join().trim();
+    } else {
+      return name;
+    }
   }
 
   private getReleaseMonth(releaseDate: string): number {

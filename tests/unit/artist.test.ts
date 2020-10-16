@@ -26,7 +26,7 @@ describe("Artist class", () => {
     describe("Add Discography method", () => {
       test("Discography property should not be empty anymore", () => {
         expect(artist.discography[0] instanceof Album).toBeTruthy();
-        expect(artist.discography.length).toBe(beatlesAlbums.items.length);
+        expect(artist.discography.length).toBeGreaterThan(10);
       });
 
       test("Discography should be sort chronologically (from earliest to latest release", () => {
@@ -43,11 +43,23 @@ describe("Artist class", () => {
           artist.discography[0].releaseMonth
         );
       });
+
       test("Earliest and Latest release property should be set", () => {
         expect(artist.earliestReleaseYear).toBe(1963);
         expect(artist.latestReleaseYear).toBe(2019);
       });
+
+      test("Discography should not have duplicates", () => {
+        let findings = [];
+        artist.discography.forEach((album) => {
+          if (album.name.includes("Sgt. Pepper")) {
+            findings.push(album);
+          }
+        });
+        expect(findings.length).toBe(1);
+      });
     });
+
     describe("Render()", () => {
       test("Return an HTML Element", () => {
         let html = artist.render();
@@ -70,7 +82,7 @@ describe("Artist class", () => {
       test("ArtistDiscography node should contain the albums info", () => {
         let html = artist.render();
         expect(html.children[1].children.length).toBe(
-          beatlesAlbums.items.length
+          artist.discography.length
         );
         expect(html.children[1].innerHTML).toContain(
           beatlesAlbums.items[0].images[2].url

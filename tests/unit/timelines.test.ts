@@ -33,7 +33,7 @@ describe("Timelines class", () => {
         expect(timelines.artists.length).toBe(2);
         expect(timelines.artists[0].name).toBe("The Beatles");
       });
-      test("Earliest and Latest release property should be set", () => {
+      test("Earliest and Latest release property should be set ", () => {
         expect(timelines.earliestReleaseYear).toBe(1963); // form the beatles
         expect(timelines.latestReleaseYear).toBe(2020); // from the rolling stones
       });
@@ -63,11 +63,11 @@ describe("Timelines class", () => {
         expect(html.children[2].getAttribute("data-timelines-axis")).toBe("");
       });
 
-      test("TimelineAxis node should contain every year from earliest to latest release", () => {
-        expect(html.children[2].innerHTML).toContain("1963"); // earliest
+      test("TimelineAxis node should contain every year from earliest to latest release with 1 year offset", () => {
+        expect(html.children[2].innerHTML).toContain("1962"); // earliest
         expect(html.children[2].innerHTML).toContain("1986"); // random
         expect(html.children[2].innerHTML).toContain("2001"); // random
-        expect(html.children[2].innerHTML).toContain("2020"); // latest
+        expect(html.children[2].innerHTML).toContain("2021"); // latest
       });
       //   test("ArtistName node should contain the name of the artist", () => {
       //     let html = artist.render();

@@ -38,7 +38,9 @@ export default class Timelines {
     timelinesNode.id = "timelines";
     timelinesNode.dataset.timelines = "";
     timelinesNode.style.width =
-      200 + 64 * (this.latestReleaseYear - this.earliestReleaseYear + 1) + "px";
+      200 +
+      100 * (this.latestReleaseYear - this.earliestReleaseYear + 3) +
+      "px";
     this.artists.forEach((artist) => {
       timelinesNode.appendChild(artist.render());
     });
@@ -67,10 +69,10 @@ export default class Timelines {
   }
 
   private generateYearsArray(): Array<number> {
-    const yearsDiff = this.latestReleaseYear - this.earliestReleaseYear + 1;
+    const yearsDiff = this.latestReleaseYear - this.earliestReleaseYear + 3;
     return Array.from(
       new Array(yearsDiff),
-      (_, i) => i + this.earliestReleaseYear
+      (_, i) => i + this.earliestReleaseYear - 1
     );
   }
 }
