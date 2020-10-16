@@ -21,6 +21,8 @@ export default class AlbumCover {
   render() {
     let albumCoverNode = document.createElement("img");
     albumCoverNode.src = this.urlSmall;
+    albumCoverNode.height = 64;
+    albumCoverNode.width = 64;
     return albumCoverNode;
   }
 }
