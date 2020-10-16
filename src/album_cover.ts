@@ -1,25 +1,18 @@
-interface IAlbumCoverUrls {
-  urlSmall?: string;
-  urlLarge?: string;
-}
-
-export interface ISpotifyCoverImages {
+export interface ISpotifyCoverImage {
   url: string;
 }
-
 export default class AlbumCover {
   urlSmall: string;
+  urlMedium: string;
   urlLarge: string;
 
-  constructor({ urlSmall = "", urlLarge = "" }: IAlbumCoverUrls = {}) {
-    this.urlSmall = urlSmall;
-    this.urlLarge = urlLarge;
-  }
-
-  addFromSpotifyData(spotifyCoversData: Array<ISpotifyCoverImages>) {
-    this.urlSmall = spotifyCoversData[spotifyCoversData.length - 1].url;
-    this.urlLarge = spotifyCoversData[0].url;
-    return this;
+  constructor(spotifyCoversImages: Array<ISpotifyCoverImage>) {
+    this.urlSmall = spotifyCoversImages[spotifyCoversImages.length - 1].url;
+    this.urlLarge = spotifyCoversImages[0].url;
+    this.urlMedium =
+      spotifyCoversImages.length > 2
+        ? (this.urlMedium = spotifyCoversImages[1].url)
+        : (this.urlMedium = spotifyCoversImages[0].url);
   }
 
   render() {

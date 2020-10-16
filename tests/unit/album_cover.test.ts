@@ -3,18 +3,19 @@ import beatlesData from "../../src/data/beatles";
 
 describe("AlbumCover class", () => {
   describe("Instantiation/Creation", () => {
-    test("With constructor", () => {
-      let urlSmall = "https//whatever.com/small_image.jpg";
-      let urlLarge = "https//whatever.com/large_image.jpg";
-      let albumCover = new AlbumCover({ urlSmall, urlLarge });
-      expect(albumCover.urlSmall).toBe(urlSmall);
-      expect(albumCover.urlLarge).toBe(urlLarge);
-    });
-
-    test("With Spotify Data", () => {
+    test("With constructor (based on spotify data from api with 3 images size)", () => {
       let covers = beatlesData.items[0].images;
-      let albumCover = new AlbumCover().addFromSpotifyData(covers);
+      let albumCover = new AlbumCover(covers);
       expect(albumCover.urlSmall).toBe(covers[covers.length - 1].url);
+      expect(albumCover.urlMedium).toBe(covers[1].url);
+      expect(albumCover.urlLarge).toBe(covers[0].url);
+    });
+    test("With constructor (based on spotify data from api with only 2 images size)", () => {
+      let covers = beatlesData.items[0].images;
+      covers.pop();
+      let albumCover = new AlbumCover(covers);
+      expect(albumCover.urlSmall).toBe(covers[covers.length - 1].url);
+      expect(albumCover.urlMedium).toBe(covers[0].url); // Match with the largest one
       expect(albumCover.urlLarge).toBe(covers[0].url);
     });
   });
@@ -23,7 +24,7 @@ describe("AlbumCover class", () => {
 
     beforeEach(() => {
       let covers = beatlesData.items[0].images;
-      albumCover = new AlbumCover().addFromSpotifyData(covers);
+      albumCover = new AlbumCover(covers);
     });
 
     test("Return an HTML Element", () => {

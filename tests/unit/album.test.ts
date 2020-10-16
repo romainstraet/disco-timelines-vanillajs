@@ -1,6 +1,5 @@
 import Album from "../../src/album";
 import AlbumCover from "../../src/album_cover";
-import beatles from "../../src/data/beatles";
 import beatlesData from "../../src/data/beatles";
 
 describe("Album class", () => {
