@@ -7,12 +7,15 @@ export default class AlbumCover {
   urlLarge: string;
 
   constructor(spotifyCoversImages: Array<ISpotifyCoverImage>) {
-    this.urlSmall = spotifyCoversImages[spotifyCoversImages.length - 1].url;
     this.urlLarge = spotifyCoversImages[0].url;
     this.urlMedium =
-      spotifyCoversImages.length > 2
-        ? (this.urlMedium = spotifyCoversImages[1].url)
-        : (this.urlMedium = spotifyCoversImages[0].url);
+      spotifyCoversImages[1].url == ""
+        ? this.urlLarge
+        : spotifyCoversImages[1].url;
+    this.urlSmall =
+      spotifyCoversImages[2].url == ""
+        ? this.urlMedium
+        : spotifyCoversImages[2].url;
   }
 
   render() {

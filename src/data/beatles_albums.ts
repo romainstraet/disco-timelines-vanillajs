@@ -1145,6 +1145,53 @@ export default {
       ],
 
       external_urls: {
+        spotify: "https://open.spotify.com/album/3KzAvEXcqJKBF97HrXwlgf",
+      },
+      href: "https://api.spotify.com/v1/albums/3KzAvEXcqJKBF97HrXwlgf",
+      id: "3KzAvEXcqJKBF97HrXwlgf",
+      images: [
+        {
+          height: 640,
+          url:
+            "https://i.scdn.co/image/ab67616d0000b273dbeec63ad914c973e75c24df",
+          width: 640,
+        },
+        {
+          height: 300,
+          url:
+            "https://i.scdn.co/image/ab67616d00001e02dbeec63ad914c973e75c24df",
+          width: 300,
+        },
+        {
+          height: 64,
+          url: "",
+          width: 64,
+        },
+      ],
+      name: "Please Please Me (Remastered)",
+      release_date: "1963-03-22",
+      release_date_precision: "day",
+      total_tracks: 14,
+      type: "album",
+      uri: "",
+    },
+    {
+      album_group: "album",
+      album_type: "album",
+      artists: [
+        {
+          external_urls: {
+            spotify: "https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2",
+          },
+          href: "https://api.spotify.com/v1/artists/3WrFJ7ztbogyGnTHbHJFl2",
+          id: "3WrFJ7ztbogyGnTHbHJFl2",
+          name: "The Beatles",
+          type: "artist",
+          uri: "spotify:artist:3WrFJ7ztbogyGnTHbHJFl2",
+        },
+      ],
+
+      external_urls: {
         spotify: "https://open.spotify.com/album/1aYdiJk6XKeHWGO3FzHHTr",
       },
       href: "https://api.spotify.com/v1/albums/1aYdiJk6XKeHWGO3FzHHTr",
@@ -1175,54 +1222,6 @@ export default {
       total_tracks: 14,
       type: "album",
       uri: "spotify:album:1aYdiJk6XKeHWGO3FzHHTr",
-    },
-    {
-      album_group: "album",
-      album_type: "album",
-      artists: [
-        {
-          external_urls: {
-            spotify: "https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2",
-          },
-          href: "https://api.spotify.com/v1/artists/3WrFJ7ztbogyGnTHbHJFl2",
-          id: "3WrFJ7ztbogyGnTHbHJFl2",
-          name: "The Beatles",
-          type: "artist",
-          uri: "spotify:artist:3WrFJ7ztbogyGnTHbHJFl2",
-        },
-      ],
-
-      external_urls: {
-        spotify: "https://open.spotify.com/album/3KzAvEXcqJKBF97HrXwlgf",
-      },
-      href: "https://api.spotify.com/v1/albums/3KzAvEXcqJKBF97HrXwlgf",
-      id: "3KzAvEXcqJKBF97HrXwlgf",
-      images: [
-        {
-          height: 640,
-          url:
-            "https://i.scdn.co/image/ab67616d0000b273dbeec63ad914c973e75c24df",
-          width: 640,
-        },
-        {
-          height: 300,
-          url:
-            "https://i.scdn.co/image/ab67616d00001e02dbeec63ad914c973e75c24df",
-          width: 300,
-        },
-        {
-          height: 64,
-          url:
-            "",
-          width: 64,
-        },
-      ],
-      name: "Please Please Me (Remastered)",
-      release_date: "1963-03-22",
-      release_date_precision: "day",
-      total_tracks: 14,
-      type: "album",
-      uri: "",
     },
   ],
   limit: 50,
