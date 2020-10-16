@@ -37,23 +37,33 @@ export default class Timelines {
     let timelinesNode = document.createElement("div");
     timelinesNode.id = "timelines";
     timelinesNode.dataset.timelines = "";
+    timelinesNode.style.width =
+      200 + 64 * (this.latestReleaseYear - this.earliestReleaseYear + 1) + "px";
     this.artists.forEach((artist) => {
       timelinesNode.appendChild(artist.render());
     });
     timelinesNode.appendChild(this.renderTimelineAxis());
-
     return timelinesNode;
   }
 
-  renderTimelineAxis(): HTMLElement {
+  private renderTimelineAxis(): HTMLElement {
     const axisNode = document.createElement("div");
     axisNode.dataset.timelinesAxis = "";
+    axisNode.classList.add("flex");
+    axisNode.appendChild(this.renderTimelineAxisFirstCol());
     this.generateYearsArray().forEach((year) => {
       const yearDiv = document.createElement("div");
       yearDiv.textContent = year.toString();
+      yearDiv.classList.add("item");
       axisNode.appendChild(yearDiv);
     });
     return axisNode;
+  }
+
+  private renderTimelineAxisFirstCol(): HTMLElement {
+    const axisTitleNode = document.createElement("div");
+    axisTitleNode.classList.add("first-col");
+    return axisTitleNode;
   }
 
   private generateYearsArray(): Array<number> {

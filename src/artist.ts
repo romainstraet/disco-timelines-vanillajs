@@ -68,6 +68,7 @@ export default class Artist {
     let artistNode = document.createElement("div");
     artistNode.id = this.id;
     artistNode.dataset.artist = normalizeString(this.name);
+    artistNode.classList.add("flex");
     artistNode.appendChild(this.renderArtistNameNode());
     artistNode.appendChild(this.renderArtistDiscographyNode());
     return artistNode;
@@ -76,6 +77,9 @@ export default class Artist {
   private renderArtistNameNode(): HTMLElement {
     let artistNameNode = document.createElement("div");
     artistNameNode.dataset.artistName = "";
+    artistNameNode.classList.add("first-col");
+    artistNameNode.style.backgroundImage = `url(${this.imageUrl})`;
+
     artistNameNode.textContent = this.name;
     return artistNameNode;
   }
@@ -83,6 +87,7 @@ export default class Artist {
   private renderArtistDiscographyNode(): HTMLElement {
     let artistDiscoNode = document.createElement("div");
     artistDiscoNode.dataset.artistDiscography = "";
+    artistDiscoNode.classList.add("flex");
     this.discography.forEach((album) => {
       artistDiscoNode.appendChild(album.render());
     });
