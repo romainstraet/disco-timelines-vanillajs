@@ -1,4 +1,6 @@
 import beatlesArtists from "./data/beatles_artists";
+import "./style.scss";
+
 import rollingStonesArtists from "./data/rolling_stones_artists";
 import beatlesAlbums from "./data/beatles_albums";
 import rollingStonesAlbums from "./data/rolling_stones_albums";
