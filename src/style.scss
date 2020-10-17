@@ -1,11 +1,24 @@
-$body-color: red;
-
-body {
-  color: $body-color;
-}
+$timeline-first-col-width: 250px;
+$timeline-axis-year-witdh: 128px;
+$album-width: 64px;
 
 body {
   margin: 0px;
+}
+.timelines {
+}
+
+.timeline-axis {
+  display: flex;
+}
+
+.timeline-axis-first-col {
+  flex-basis: $timeline-first-col-width;
+}
+
+.timeline-axis-year {
+  width: $timeline-axis-year-witdh;
+  text-align: center;
 }
 
 .flex {
@@ -17,54 +30,19 @@ body {
 }
 
 .album {
-  width: 64px;
+  width: $album-width;
   height: 64px;
 }
 
 .year {
-  width: 128px;
+  width: $timeline-axis-year-witdh;
   text-align: center;
   border: 0px solid black;
 }
 
 .first-col {
-  flex-basis: 250px;
+  flex-basis: $timeline-first-col-width;
   background-size: cover;
   background-position: center center;
   color: white;
 }
-
-/*
-.timeline {
-  height: 64px;
-  display: flex;
-}
-
-[data-artist] {
-  display: flex;
-}
-
-[data-artist-discography] {
-  display: flex;
-}
-
-[data-timelines-axis] {
-  display: flex;
-}
-
-.first-col {
-  width: 200px;
-  height: 64px;
-}
-
-.album {
-  height: 64px;
-  width: 64px;
-  border-radius: 5px;
-  position: absolute;
-}
-
-.year {
-  width: 64px;
-  text-align: center;
-} */

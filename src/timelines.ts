@@ -1,4 +1,5 @@
 import Artist from "./artist";
+import { kTimelineAxisYearWitdh, kTimelineFirstColWidth } from "./style";
 
 export default class Timelines {
   artists: Array<Artist>;
@@ -37,10 +38,8 @@ export default class Timelines {
     let timelinesNode = document.createElement("div");
     timelinesNode.id = "timelines";
     timelinesNode.dataset.timelines = "";
-    timelinesNode.style.width =
-      200 +
-      128 * (this.latestReleaseYear - this.earliestReleaseYear + 3) +
-      "px";
+    timelinesNode.classList.add("timelines");
+    timelinesNode.style.width = this.calculateWidthOfTimelines();
     this.artists.forEach((artist) => {
       timelinesNode.appendChild(artist.render());
     });
@@ -51,21 +50,26 @@ export default class Timelines {
   private renderTimelineAxis(): HTMLElement {
     const axisNode = document.createElement("div");
     axisNode.dataset.timelinesAxis = "";
-    axisNode.classList.add("flex");
+    axisNode.classList.add("timeline-axis");
     axisNode.appendChild(this.renderTimelineAxisFirstCol());
     this.generateYearsArray().forEach((year) => {
-      const yearDiv = document.createElement("div");
-      yearDiv.textContent = year.toString();
-      yearDiv.classList.add("year");
-      axisNode.appendChild(yearDiv);
+      const yearNode = this.renderTimelineAxisYearCol(year);
+      axisNode.appendChild(yearNode);
     });
     return axisNode;
   }
 
   private renderTimelineAxisFirstCol(): HTMLElement {
     const axisTitleNode = document.createElement("div");
-    axisTitleNode.classList.add("first-col");
+    axisTitleNode.classList.add("timeline-axis-first-col");
     return axisTitleNode;
+  }
+
+  private renderTimelineAxisYearCol(year: number): HTMLElement {
+    const yearNode = document.createElement("div");
+    yearNode.textContent = year.toString();
+    yearNode.classList.add("timeline-axis-year");
+    return yearNode;
   }
 
   private generateYearsArray(): Array<number> {
@@ -73,6 +77,15 @@ export default class Timelines {
     return Array.from(
       new Array(yearsDiff),
       (_, i) => i + this.earliestReleaseYear - 1
+    );
+  }
+
+  private calculateWidthOfTimelines(): string {
+    return (
+      kTimelineFirstColWidth +
+      kTimelineAxisYearWitdh *
+        (this.latestReleaseYear - this.earliestReleaseYear + 3) +
+      "px"
     );
   }
 }

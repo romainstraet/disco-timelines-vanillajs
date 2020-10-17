@@ -5,6 +5,10 @@ import beatlesAlbums from "../../src/data/beatles_albums";
 import rollingStonesAlbums from "../../src/data/rolling_stones_albums";
 
 import Artist from "../../src/artist";
+import {
+  kTimelineAxisYearWitdh,
+  kTimelineFirstColWidth,
+} from "../../src/style";
 
 describe("Timelines class", () => {
   describe("Instantiation/Creation", () => {
@@ -50,6 +54,25 @@ describe("Timelines class", () => {
         expect(html instanceof HTMLElement).toBeTruthy();
         expect(html.id).toBe("timelines");
         expect(html.dataset.timelines).toBe("");
+        expect(html.className).toContain("timelines");
+      });
+
+      test("HTML Element should have variable length depending on years", () => {
+        function expectedWidth(timelines: Timelines) {
+          return (
+            kTimelineFirstColWidth +
+            kTimelineAxisYearWitdh *
+              (timelines.latestReleaseYear - timelines.earliestReleaseYear + 3)
+          );
+        }
+        let expectedWidthInPx = expectedWidth(timelines);
+        expect(html.style.width).toContain(expectedWidthInPx);
+        // Second try with different values
+        timelines.latestReleaseYear = 2000;
+        timelines.earliestReleaseYear = 1990;
+        html = timelines.render();
+        expectedWidthInPx = expectedWidth(timelines);
+        expect(html.style.width).toContain(expectedWidthInPx);
       });
 
       test("HTML Element have 3 nodes", () => {
@@ -69,22 +92,21 @@ describe("Timelines class", () => {
         expect(html.children[2].innerHTML).toContain("2001"); // random
         expect(html.children[2].innerHTML).toContain("2021"); // latest
       });
-      //   test("ArtistName node should contain the name of the artist", () => {
-      //     let html = artist.render();
-      //     expect(html.children[0].innerHTML).toContain("The Beatles");
-      //   });
-      //   test("ArtistDiscography node should contain the albums info", () => {
-      //     let html = artist.render();
-      //     expect(html.children[1].children.length).toBe(
-      //       beatlesAlbums.items.length
-      //     );
-      //     expect(html.children[1].innerHTML).toContain(
-      //       beatlesAlbums.items[0].images[2].url
-      //     );
-      //     expect(html.children[1].innerHTML).toContain(
-      //       beatlesAlbums.items[5].images[2].url
-      //     );
-      //   });
+
+      test("TimelineAxis node should should have appropriate class", () => {
+        expect(html.children[2].className).toContain("timeline-axis");
+      });
+
+      test("TimelineAxis children node should should have appropriate class", () => {
+        let firstcol = html.children[2].children[0];
+        expect(firstcol.className).toContain("timeline-axis-first-col");
+        let yearcol0 = html.children[2].children[1];
+        let yearcol5 = html.children[2].children[5];
+        let yearcol10 = html.children[2].children[10];
+        expect(yearcol0.className).toContain("timeline-axis-year");
+        expect(yearcol5.className).toContain("timeline-axis-year");
+        expect(yearcol10.className).toContain("timeline-axis-year");
+      });
     });
   });
 });
