@@ -34,41 +34,35 @@ export default class Artist {
   addDiscography(spotifyDiscography: Array<ISpotifyAlbum>): Artist {
     for (let i = 0; i < spotifyDiscography.length; i++) {
       let album = new Album(spotifyDiscography[i]);
-      /////
-      let duplIndex = this.discography.findIndex((v) => v.name == album.name);
-      if (duplIndex !== -1) {
-        if (album.releaseYear < this.discography[duplIndex].releaseYear) {
-          this.discography.splice(duplIndex, 1);
-          this.discography.push(album);
-          this.checkIfEarlierOrLaterRelease(album);
-        }
-        if (album.releaseYear == this.discography[duplIndex].releaseYear) {
-          if (album.releaseMonth < this.discography[duplIndex].releaseMonth) {
-            this.discography.splice(duplIndex, 1);
-            this.discography.push(album);
-            this.checkIfEarlierOrLaterRelease(album);
-          }
-        }
-      } else {
-        this.discography.push(album);
-        this.checkIfEarlierOrLaterRelease(album);
-      }
-      //////
+      let albumAdded = this.addAlbumAndRemoveDuplicate(album);
+      if (albumAdded) this.setEarlierOrLaterRelease(album);
     }
-    //    this.cleanDuplicates();
     this.sortDiscographyChronologically();
     return this;
   }
 
-  // private cleanDuplicates() {
-  //   const unique = this.discography
-  //     .map((e) => e.name)
-  //     .map((v, i, arr) => arr.indexOf(v) == i);
-  //   this.discography = this.discography.filter((_, i) => unique[i]);
-  //   return this;
-  // }
+  private addAlbumAndRemoveDuplicate(album: Album): boolean {
+    let duplicate = this.discography.findIndex((v) => v.name == album.name);
+    if (duplicate == -1) {
+      this.discography.push(album);
+      return true;
+    }
+    if (album.releaseYear < this.discography[duplicate].releaseYear) {
+      this.discography.splice(duplicate, 1);
+      this.discography.push(album);
+      return true;
+    }
+    if (album.releaseYear == this.discography[duplicate].releaseYear) {
+      if (album.releaseMonth < this.discography[duplicate].releaseMonth) {
+        this.discography.splice(duplicate, 1);
+        this.discography.push(album);
+        return true;
+      }
+    }
+    return false;
+  }
 
-  private checkIfEarlierOrLaterRelease(album: Album) {
+  private setEarlierOrLaterRelease(album: Album) {
     if (this.earliestReleaseYear == 0) {
       this.earliestReleaseYear = album.releaseYear;
       this.latestReleaseYear = album.releaseYear;
@@ -96,6 +90,8 @@ export default class Artist {
     artistNode.id = this.id;
     artistNode.dataset.artist = normalizeString(this.name);
     artistNode.classList.add("flex");
+    artistNode.classList.add("artist");
+
     artistNode.appendChild(this.renderArtistNameNode());
     artistNode.appendChild(this.renderArtistDiscographyNode());
     return artistNode;

@@ -49,6 +49,9 @@ export default class Album {
     albumNode.id = this.id;
     albumNode.dataset.album = "";
     albumNode.classList.add("flex");
+    albumNode.classList.add("album");
+    albumNode.style.position = "absolute";
+    albumNode.style.left = (this.releaseYear - 1962) * 128 + 200 + "px";
     albumNode.appendChild(this.covers.render());
     return albumNode;
   }

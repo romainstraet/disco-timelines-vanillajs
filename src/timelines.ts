@@ -39,7 +39,7 @@ export default class Timelines {
     timelinesNode.dataset.timelines = "";
     timelinesNode.style.width =
       200 +
-      100 * (this.latestReleaseYear - this.earliestReleaseYear + 3) +
+      128 * (this.latestReleaseYear - this.earliestReleaseYear + 3) +
       "px";
     this.artists.forEach((artist) => {
       timelinesNode.appendChild(artist.render());
@@ -52,6 +52,7 @@ export default class Timelines {
     const axisNode = document.createElement("div");
     axisNode.dataset.timelinesAxis = "";
     axisNode.classList.add("flex");
+
     axisNode.appendChild(this.renderTimelineAxisFirstCol());
     this.generateYearsArray().forEach((year) => {
       const yearDiv = document.createElement("div");
