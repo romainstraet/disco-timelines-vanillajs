@@ -15,9 +15,10 @@ body {
   height: 64px;
 }
 
-.item {
+.year {
   width: 128px;
-  height: 100px;
+  text-align: center;
+  border: 1px solid black;
 }
 
 .first-col {

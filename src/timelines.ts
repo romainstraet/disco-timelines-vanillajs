@@ -52,12 +52,11 @@ export default class Timelines {
     const axisNode = document.createElement("div");
     axisNode.dataset.timelinesAxis = "";
     axisNode.classList.add("flex");
-
     axisNode.appendChild(this.renderTimelineAxisFirstCol());
     this.generateYearsArray().forEach((year) => {
       const yearDiv = document.createElement("div");
       yearDiv.textContent = year.toString();
-      yearDiv.classList.add("item");
+      yearDiv.classList.add("year");
       axisNode.appendChild(yearDiv);
     });
     return axisNode;
