@@ -1,4 +1,5 @@
 import AlbumCover, { ISpotifyCoverImage } from "./album_cover";
+import { kTimelineAxisYearWitdh } from "./style";
 
 export interface ISpotifyAlbum {
   id: string;
@@ -44,12 +45,19 @@ export default class Album {
     return releaseDate.length <= 4 ? 0 : parseInt(releaseDate.substr(5, 2));
   }
 
-  render(): HTMLElement {
+  render(startingYear: number): HTMLElement {
     let albumNode = document.createElement("div");
     albumNode.id = this.id;
-    albumNode.dataset.album = "";
+    albumNode.dataset.album = this.releaseMonth + "-" + this.releaseYear;
     albumNode.classList.add("timeline-artist-disco-album");
+    albumNode.style.position = "absolute";
+    albumNode.style.left =
+      (this.releaseYear - startingYear + this.releaseMonth / 12) *
+        kTimelineAxisYearWitdh +
+      "px";
     albumNode.appendChild(this.covers.render());
+    console.log(this.name, this.releaseYear);
+
     return albumNode;
   }
 }

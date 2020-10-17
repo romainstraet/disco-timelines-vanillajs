@@ -113,7 +113,7 @@ export default class Artist {
       (this.latestReleaseYear - startingYear + 2) * kTimelineAxisYearWitdh +
       "px";
     this.discography.forEach((album) => {
-      artistDiscoNode.appendChild(album.render());
+      artistDiscoNode.appendChild(album.render(startingYear));
     });
     return artistDiscoNode;
   }
