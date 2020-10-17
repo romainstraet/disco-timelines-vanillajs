@@ -1,5 +1,6 @@
 import Album, { ISpotifyAlbum } from "./album";
 import { normalizeString } from "./helpers";
+import { kTimelineAxisYearWitdh } from "./style";
 
 interface ISpotifyArtist {
   id: string;
@@ -85,32 +86,32 @@ export default class Artist {
     });
   }
 
-  render(): HTMLElement {
+  render(startingYear: number): HTMLElement {
     let artistNode = document.createElement("div");
     artistNode.id = this.id;
     artistNode.dataset.artist = normalizeString(this.name);
-    artistNode.classList.add("flex");
-    artistNode.classList.add("artist");
-
+    artistNode.classList.add("timeline-artist");
     artistNode.appendChild(this.renderArtistNameNode());
-    artistNode.appendChild(this.renderArtistDiscographyNode());
+    artistNode.appendChild(this.renderArtistDiscographyNode(startingYear));
     return artistNode;
   }
 
   private renderArtistNameNode(): HTMLElement {
     let artistNameNode = document.createElement("div");
     artistNameNode.dataset.artistName = "";
-    artistNameNode.classList.add("first-col");
+    artistNameNode.classList.add("timeline-artist-first-col");
     artistNameNode.style.backgroundImage = `url(${this.imageUrl})`;
-
     artistNameNode.textContent = this.name;
     return artistNameNode;
   }
 
-  private renderArtistDiscographyNode(): HTMLElement {
+  private renderArtistDiscographyNode(startingYear: number): HTMLElement {
     let artistDiscoNode = document.createElement("div");
     artistDiscoNode.dataset.artistDiscography = "";
-    artistDiscoNode.classList.add("flex");
+    artistDiscoNode.classList.add("timeline-artist-disco");
+    artistDiscoNode.style.width =
+      (this.latestReleaseYear - startingYear + 2) * kTimelineAxisYearWitdh +
+      "px";
     this.discography.forEach((album) => {
       artistDiscoNode.appendChild(album.render());
     });

@@ -46,7 +46,8 @@ describe("Album class", () => {
       let html = album.render();
       expect(html instanceof HTMLElement).toBeTruthy();
       expect(html.id).toBe(album.id);
-      expect(html.dataset.album).not.toBeUndefined();
+      expect(html.dataset.album).toBe("");
+      expect(html.className).toContain("timeline-artist-disco-album");
       expect(html.innerHTML).toContain(album.covers.urlSmall);
     });
   });

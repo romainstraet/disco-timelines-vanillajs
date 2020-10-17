@@ -21,28 +21,25 @@ body {
   text-align: center;
 }
 
-.flex {
+.timeline-artist {
   display: flex;
-}
-
-.artist {
   height: 64px;
 }
 
-.album {
-  width: $album-width;
-  height: 64px;
-}
-
-.year {
-  width: $timeline-axis-year-witdh;
-  text-align: center;
-  border: 0px solid black;
-}
-
-.first-col {
+.timeline-artist-first-col {
   flex-basis: $timeline-first-col-width;
   background-size: cover;
   background-position: center center;
-  color: white;
+}
+
+.timeline-artist-disco {
+  display: flex;
+  position: relative;
+  background-color: red;
+}
+
+.timeline-artist-disco-album {
+  display: flex;
+  width: $album-width;
+  height: 64px;
 }

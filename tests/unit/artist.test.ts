@@ -2,6 +2,7 @@ import Artist from "../../src/artist";
 import beatlesArtists from "../../src/data/beatles_artists";
 import beatlesAlbums from "../../src/data/beatles_albums";
 import Album from "../../src/album";
+import { kTimelineAxisYearWitdh } from "../../src/style";
 
 describe("Artist class", () => {
   describe("Instantiation/Creation", () => {
@@ -71,26 +72,51 @@ describe("Artist class", () => {
     });
 
     describe("Render()", () => {
+      let html: HTMLElement;
+      let startingYear = 1962;
+
+      beforeEach(() => {
+        html = artist.render(startingYear);
+      });
+
       test("Return an HTML Element", () => {
-        let html = artist.render();
         expect(html instanceof HTMLElement).toBeTruthy();
         expect(html.id).toBe(artist.id);
         expect(html.dataset.artist).toBe("the-beatles");
+        expect(html.className).toContain("timeline-artist");
       });
+
       test("HTML Element have two nodes", () => {
-        let html = artist.render();
         expect(html.childNodes.length).toBe(2);
         expect(html.children[0].getAttribute("data-artist-name")).toBe("");
         expect(html.children[1].getAttribute("data-artist-discography")).toBe(
           ""
         );
       });
+
+      test("ArtistName node should have appropriate class", () => {
+        expect(html.children[0].className).toContain(
+          "timeline-artist-first-col"
+        );
+      });
+
       test("ArtistName node should contain the name of the artist", () => {
-        let html = artist.render();
         expect(html.children[0].innerHTML).toContain("The Beatles");
       });
+
+      test("ArtistDiscography node should have appropriate class", () => {
+        expect(html.children[1].className).toContain("timeline-artist-disco");
+      });
+
+      test("ArtistDiscography node should have appropriate width", () => {
+        let node = html.querySelector(".timeline-artist-disco") as HTMLElement;
+        let expectedWidth =
+          (artist.latestReleaseYear - startingYear + 2) *
+          kTimelineAxisYearWitdh;
+        expect(node.style.width).toContain(expectedWidth);
+      });
+
       test("ArtistDiscography node should contain the albums info", () => {
-        let html = artist.render();
         expect(html.children[1].children.length).toBe(
           artist.discography.length
         );

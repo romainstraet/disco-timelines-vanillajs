@@ -48,8 +48,7 @@ export default class Album {
     let albumNode = document.createElement("div");
     albumNode.id = this.id;
     albumNode.dataset.album = "";
-    albumNode.classList.add("flex");
-    albumNode.classList.add("album");
+    albumNode.classList.add("timeline-artist-disco-album");
     albumNode.appendChild(this.covers.render());
     return albumNode;
   }

@@ -41,7 +41,7 @@ export default class Timelines {
     timelinesNode.classList.add("timelines");
     timelinesNode.style.width = this.calculateWidthOfTimelines();
     this.artists.forEach((artist) => {
-      timelinesNode.appendChild(artist.render());
+      timelinesNode.appendChild(artist.render(this.earliestReleaseYear - 1));
     });
     timelinesNode.appendChild(this.renderTimelineAxis());
     return timelinesNode;
