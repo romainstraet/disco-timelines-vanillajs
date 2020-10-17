@@ -34,21 +34,39 @@ export default class Artist {
   addDiscography(spotifyDiscography: Array<ISpotifyAlbum>): Artist {
     for (let i = 0; i < spotifyDiscography.length; i++) {
       let album = new Album(spotifyDiscography[i]);
-      this.discography.push(album);
-      this.checkIfEarlierOrLaterRelease(album);
+      /////
+      let duplIndex = this.discography.findIndex((v) => v.name == album.name);
+      if (duplIndex !== -1) {
+        if (album.releaseYear < this.discography[duplIndex].releaseYear) {
+          this.discography.splice(duplIndex, 1);
+          this.discography.push(album);
+          this.checkIfEarlierOrLaterRelease(album);
+        }
+        if (album.releaseYear == this.discography[duplIndex].releaseYear) {
+          if (album.releaseMonth < this.discography[duplIndex].releaseMonth) {
+            this.discography.splice(duplIndex, 1);
+            this.discography.push(album);
+            this.checkIfEarlierOrLaterRelease(album);
+          }
+        }
+      } else {
+        this.discography.push(album);
+        this.checkIfEarlierOrLaterRelease(album);
+      }
+      //////
     }
-    this.cleanDuplicates();
+    //    this.cleanDuplicates();
     this.sortDiscographyChronologically();
     return this;
   }
 
-  private cleanDuplicates() {
-    const unique = this.discography
-      .map((e) => e.name)
-      .map((v, i, arr) => arr.indexOf(v) == i);
-    this.discography = this.discography.filter((_, i) => unique[i]);
-    return this;
-  }
+  // private cleanDuplicates() {
+  //   const unique = this.discography
+  //     .map((e) => e.name)
+  //     .map((v, i, arr) => arr.indexOf(v) == i);
+  //   this.discography = this.discography.filter((_, i) => unique[i]);
+  //   return this;
+  // }
 
   private checkIfEarlierOrLaterRelease(album: Album) {
     if (this.earliestReleaseYear == 0) {

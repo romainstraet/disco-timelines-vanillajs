@@ -50,13 +50,23 @@ describe("Artist class", () => {
       });
 
       test("Discography should not have duplicates", () => {
-        let findings = [];
+        let findings: Array<Album> = [];
         artist.discography.forEach((album) => {
           if (album.name.includes("Sgt. Pepper")) {
             findings.push(album);
           }
         });
         expect(findings.length).toBe(1);
+      });
+
+      test("Discography should only store the earliest of duplicates", () => {
+        let findings: Array<Album> = [];
+        artist.discography.forEach((album) => {
+          if (album.name.includes("Sgt. Pepper")) {
+            findings.push(album);
+          }
+        });
+        expect(findings[0].releaseMonth).toBe(5); // 1 duplicates is from May, the other are from June
       });
     });
 
@@ -85,7 +95,7 @@ describe("Artist class", () => {
           artist.discography.length
         );
         expect(html.children[1].innerHTML).toContain(
-          beatlesAlbums.items[0].images[2].url
+          beatlesAlbums.items[10].images[2].url
         );
         expect(html.children[1].innerHTML).toContain(
           beatlesAlbums.items[5].images[2].url
