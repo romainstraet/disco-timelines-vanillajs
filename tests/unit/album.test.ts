@@ -12,7 +12,7 @@ describe("Album class", () => {
       expect(album.releaseYear).toBe(2019);
       expect(album.releaseMonth).toBe(9);
       expect(album.covers.urlLarge).toBe(beatlesAlbum.images[0].url);
-      expect(album.spotifyUri).toBe(beatlesAlbum.uri);
+      expect(album.spotifyUrl).toBe(beatlesAlbum.external_urls.spotify);
     });
 
     test("With constructor (based on spotify data from api with less precised release date)", () => {
@@ -51,7 +51,7 @@ describe("Album class", () => {
       expect(html.dataset.album).toBe("9-2019");
       expect(html.className).toContain("timeline-artist-disco-album");
       expect(html.style.backgroundImage).toContain(album.covers.urlMedium);
-      expect(html.outerHTML).toContain(album.spotifyUri);
+      expect(html.outerHTML).toContain(album.spotifyUrl);
     });
 
     test("HTML Element should be positioned from left based on year release", () => {

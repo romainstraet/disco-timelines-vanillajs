@@ -13,14 +13,67 @@ html {
   box-sizing: border-box;
 }
 
-.timelines {
+#content {
   bottom: 0px;
   position: absolute;
+  margin: 10px 20px;
+}
+
+#search-artist {
+  display: flex;
+}
+
+input[type="text"] {
+  margin: 0px;
+  width: $timeline-first-col-width;
+  padding: 15px;
+  border: 4px solid #1ed760;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-sizing: border-box;
+  outline: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  &:focus {
+    transition: all 0.3s ease-in-out;
+
+    box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  }
+}
+input[type="submit"] {
+  margin: 0px;
+  padding: 15px;
+  border: 4px solid #1ed760;
+  background-color: #1ed760;
+  color: white;
+  border-left: 0px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-sizing: border-box;
+  outline: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  &:hover {
+    //transition: all 0.3s ease-in-out;
+
+    background-color: #1db954;
+  }
+  &:active {
+    //transition: all 0.3s ease-in-out;
+    background-color: #1ed760;
+    box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0);
+  }
+}
+
+.timelines {
 }
 
 .timeline-axis {
   display: flex;
-  margin: 10px;
+  margin: 10px 0px;
 }
 
 .timeline-axis-first-col {
@@ -41,7 +94,7 @@ html {
   height: 110px;
   background-color: #fafafa;
   border-radius: 20px;
-  margin: 10px;
+  margin: 10px 0px;
   box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
 }
 

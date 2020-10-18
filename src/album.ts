@@ -5,8 +5,12 @@ export interface ISpotifyAlbum {
   id: string;
   name: string;
   release_date: string;
-  uri: string;
+  external_urls: IExternalUrl;
   images: Array<ISpotifyCoverImage>;
+}
+
+interface IExternalUrl {
+  spotify: string;
 }
 
 export default class Album {
@@ -14,7 +18,7 @@ export default class Album {
   name: string;
   releaseYear: number;
   releaseMonth: number;
-  spotifyUri: string;
+  spotifyUrl: string;
   covers: AlbumCover;
 
   constructor(spotifyAlbum: ISpotifyAlbum) {
@@ -22,7 +26,7 @@ export default class Album {
     this.name = this.cleanName(spotifyAlbum.name);
     this.releaseYear = parseInt(spotifyAlbum.release_date.substr(0, 4));
     this.releaseMonth = this.getReleaseMonth(spotifyAlbum.release_date);
-    this.spotifyUri = spotifyAlbum.uri;
+    this.spotifyUrl = spotifyAlbum.external_urls.spotify;
     this.covers = new AlbumCover(spotifyAlbum.images);
     return this;
   }
@@ -52,7 +56,8 @@ export default class Album {
     albumNode.id = this.id;
     albumNode.dataset.album = this.releaseMonth + "-" + this.releaseYear;
     albumNode.classList.add("timeline-artist-disco-album");
-    albumNode.href = this.spotifyUri;
+    albumNode.href = this.spotifyUrl;
+    albumNode.target = "_blank";
     albumNode.style.backgroundImage = `url(${this.covers.urlMedium})`;
     albumNode.style.position = "absolute";
     albumNode.style.left =
