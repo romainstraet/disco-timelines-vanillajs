@@ -3,31 +3,45 @@ import { Selector } from "testcafe";
 fixture("Website").page("../../dist/index.html");
 
 test('On launch"', async (browser) => {
+  let beatlesTimeline = Selector('[data-artist="the-beatles"]');
+  let beatlesDisco = beatlesTimeline.child("[data-artist-discography]");
+  let beatlesFirstAlbumPosition = beatlesDisco.child(0).offsetLeft;
+  let beatlesLastAlbumPosition = beatlesDisco.child(-1).offsetLeft;
+  let beatlesAlbumsCount = beatlesDisco.childElementCount;
+  let rStonesTimeline = Selector('[data-artist="the-rolling-stones"]');
+  let rStonesDisco = rStonesTimeline.child("[data-artist-discography]");
+  let rStonesFirstAlbumPosition = rStonesDisco.child(0).offsetLeft;
+  let rStonesLastAlbumPosition = rStonesDisco.child(-1).offsetLeft;
+  let rStonesAlbumsCount = rStonesDisco.childElementCount;
+  let axisTimeline = Selector("[data-timelines-axis]");
+
+  // A user, let's call him James, go on the website
+  // He notices that it already shows 2 albums timelines
+  // One with the Beatles discography and one with the Rolling Stones discography
   await browser
-    // A user, let's call him James, go on the website
-    // He notices that it already shows 2 albums timelines
-    // One with the Beatles discography and one with the Rolling Stones discography
-    .expect(Selector('[data-artist="the-beatles"]').innerText)
+    .expect(beatlesTimeline.innerText)
     .contains("THE BEATLES")
-    .expect(Selector('[data-artist="the-rolling-stones"]').innerText)
+    .expect(rStonesTimeline.innerText)
     .contains("THE ROLLING STONES")
 
     // He notices an horizontal axis with the years
-    // Starting 1 year before the oldest albums of all album displayed
+    // Starting the year of the oldest albums of all album displayed
     // Until 1 year after the latests albums of all albums displayed
-    .expect(Selector("[data-timelines-axis]").innerText)
+    .expect(axisTimeline.innerText)
     .contains("1963")
-    .expect(Selector("[data-timelines-axis]").innerText)
+    .expect(axisTimeline.innerText)
     .contains("1986")
-    .expect(Selector("[data-timelines-axis]").innerText)
-    .contains("2021");
+    .expect(axisTimeline.innerText)
+    .contains("2021")
 
-  // He also notices that :
-  // - Only The Beatles have released an album in 1963 (Please please me)
-
-  // - Only The Rolling stones have released an album in 1981 (Tattoo you)
-
-  // - The Beatles have released 2 albums in 1969 (Yellow Submarine and Abbey Road)
-
-  // - The Rolling Stones have also released an album in 1969 (Let it bleed)
+    // He also notices that based on their position on the timeline :
+    // - the Beatles have released a first album before the Rolling Stones
+    .expect(beatlesFirstAlbumPosition)
+    .lt(rStonesFirstAlbumPosition)
+    // - the Rolling Stones have released an album after the last one of the Beatles
+    .expect(beatlesLastAlbumPosition)
+    .lt(rStonesLastAlbumPosition)
+    // - the Rolling Stones have release more albums than the Beatles
+    .expect(beatlesAlbumsCount)
+    .lt(rStonesAlbumsCount);
 });
