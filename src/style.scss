@@ -1,15 +1,26 @@
-$timeline-first-col-width: 250px;
+$timeline-first-col-width: 350px;
 $timeline-axis-year-witdh: 128px;
 $album-width: 64px;
 
-body {
-  margin: 0px;
+body,
+html {
+  margin: 0;
+  padding: 0;
 }
+
+#app {
+  height: 100%;
+  box-sizing: border-box;
+}
+
 .timelines {
+  bottom: 0px;
+  position: absolute;
 }
 
 .timeline-axis {
   display: flex;
+  margin: 10px;
 }
 
 .timeline-axis-first-col {
@@ -19,27 +30,57 @@ body {
 .timeline-axis-year {
   width: $timeline-axis-year-witdh;
   text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-size: 2.75rem;
+  color: gainsboro;
 }
 
 .timeline-artist {
   display: flex;
-  height: 64px;
+  height: 110px;
+  background-color: #fafafa;
+  border-radius: 20px;
+  margin: 10px;
+  box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
 }
 
 .timeline-artist-first-col {
   flex-basis: $timeline-first-col-width;
+  display: flex;
+  align-items: center;
   background-size: cover;
   background-position: center center;
+  border-radius: 20px;
+  box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0);
+
+  h2 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    color: white;
+    text-transform: uppercase;
+    padding: 15px;
+    font-size: 1.7rem;
+  }
 }
 
 .timeline-artist-disco {
   display: flex;
+  align-items: center;
   position: relative;
-  background-color: red;
 }
 
 .timeline-artist-disco-album {
-  display: flex;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
   width: $album-width;
-  height: 64px;
+  height: $album-width;
+  border: 3px solid gainsboro;
+  border-radius: 3px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transform: scale(2.5);
+    z-index: 9999;
+  }
+  background-size: cover;
+  background-position: center center;
 }

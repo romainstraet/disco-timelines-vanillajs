@@ -1,5 +1,9 @@
 import Artist from "./artist";
-import { kTimelineAxisYearWitdh, kTimelineFirstColWidth } from "./style";
+import {
+  kEndYearOffset,
+  kTimelineAxisYearWitdh,
+  kTimelineFirstColWidth,
+} from "./style";
 
 export default class Timelines {
   artists: Array<Artist>;
@@ -41,7 +45,7 @@ export default class Timelines {
     timelinesNode.classList.add("timelines");
     timelinesNode.style.width = this.calculateWidthOfTimelines();
     this.artists.forEach((artist) => {
-      timelinesNode.appendChild(artist.render(this.earliestReleaseYear - 1));
+      timelinesNode.appendChild(artist.render(this.earliestReleaseYear));
     });
     timelinesNode.appendChild(this.renderTimelineAxis());
     return timelinesNode;
@@ -73,10 +77,11 @@ export default class Timelines {
   }
 
   private generateYearsArray(): Array<number> {
-    const yearsDiff = this.latestReleaseYear - this.earliestReleaseYear + 3;
+    const yearsDiff =
+      this.latestReleaseYear - this.earliestReleaseYear + 1 + kEndYearOffset;
     return Array.from(
       new Array(yearsDiff),
-      (_, i) => i + this.earliestReleaseYear - 1
+      (_, i) => i + this.earliestReleaseYear
     );
   }
 
@@ -84,7 +89,10 @@ export default class Timelines {
     return (
       kTimelineFirstColWidth +
       kTimelineAxisYearWitdh *
-        (this.latestReleaseYear - this.earliestReleaseYear + 3) +
+        (this.latestReleaseYear -
+          this.earliestReleaseYear +
+          1 +
+          kEndYearOffset) +
       "px"
     );
   }

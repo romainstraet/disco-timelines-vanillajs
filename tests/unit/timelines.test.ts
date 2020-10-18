@@ -6,6 +6,7 @@ import rollingStonesAlbums from "../../src/data/rolling_stones_albums";
 
 import Artist from "../../src/artist";
 import {
+  kEndYearOffset,
   kTimelineAxisYearWitdh,
   kTimelineFirstColWidth,
 } from "../../src/style";
@@ -62,7 +63,10 @@ describe("Timelines class", () => {
           return (
             kTimelineFirstColWidth +
             kTimelineAxisYearWitdh *
-              (timelines.latestReleaseYear - timelines.earliestReleaseYear + 3)
+              (timelines.latestReleaseYear -
+                timelines.earliestReleaseYear +
+                1 +
+                kEndYearOffset)
           );
         }
         let expectedWidthInPx = expectedWidth(timelines);
@@ -87,10 +91,12 @@ describe("Timelines class", () => {
       });
 
       test("TimelineAxis node should contain every year from earliest to latest release with 1 year offset", () => {
-        expect(html.children[2].innerHTML).toContain("1962"); // earliest
+        expect(html.children[2].innerHTML).not.toContain("1962"); // earliest
+        expect(html.children[2].innerHTML).toContain("1963"); // earliest
         expect(html.children[2].innerHTML).toContain("1986"); // random
         expect(html.children[2].innerHTML).toContain("2001"); // random
         expect(html.children[2].innerHTML).toContain("2021"); // latest
+        expect(html.children[2].innerHTML).not.toContain("2022"); // earliest
       });
 
       test("TimelineAxis node should should have appropriate class", () => {

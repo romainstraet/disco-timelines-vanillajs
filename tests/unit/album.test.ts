@@ -45,18 +45,18 @@ describe("Album class", () => {
 
     test("Return an HTML Element", () => {
       let startingYear = 1962;
-
-      let html = album.render(startingYear);
+      let html = album.render(startingYear, true);
       expect(html instanceof HTMLElement).toBeTruthy();
       expect(html.id).toBe(album.id);
       expect(html.dataset.album).toBe("9-2019");
       expect(html.className).toContain("timeline-artist-disco-album");
-      expect(html.innerHTML).toContain(album.covers.urlSmall);
+      expect(html.style.backgroundImage).toContain(album.covers.urlMedium);
+      expect(html.outerHTML).toContain(album.spotifyUri);
     });
 
     test("HTML Element should be positioned from left based on year release", () => {
       let startingYear = 1962;
-      let html = album.render(startingYear);
+      let html = album.render(startingYear, true);
       expect(html.style.position).toBe("absolute");
       let expectedPosition =
         (album.releaseYear - startingYear + album.releaseMonth / 12) *

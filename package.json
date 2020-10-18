@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "webpack --watch",
-    "test:unit": "jest tests/unit",
+    "test:unit": "jest tests/unit --coverage",
     "test:acceptance": "testcafe chrome tests/acceptance"
   },
   "author": "",

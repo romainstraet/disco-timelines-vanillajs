@@ -32,7 +32,9 @@ export default class Album {
     if (
       arr[arr.length - 1].toLowerCase().includes("deluxe") ||
       arr[arr.length - 1].toLowerCase().includes("remaster") ||
-      arr[arr.length - 1].toLowerCase().includes("re-master")
+      arr[arr.length - 1].toLowerCase().includes("re-master") ||
+      arr[arr.length - 1].toLowerCase().includes("version") ||
+      arr[arr.length - 1].toLowerCase().includes("edition")
     ) {
       arr.pop();
       return arr.join().trim();
@@ -45,19 +47,28 @@ export default class Album {
     return releaseDate.length <= 4 ? 0 : parseInt(releaseDate.substr(5, 2));
   }
 
-  render(startingYear: number): HTMLElement {
-    let albumNode = document.createElement("div");
+  render(startingYear: number, isEven: boolean): HTMLElement {
+    let albumNode = document.createElement("a");
     albumNode.id = this.id;
     albumNode.dataset.album = this.releaseMonth + "-" + this.releaseYear;
     albumNode.classList.add("timeline-artist-disco-album");
+    albumNode.href = this.spotifyUri;
+    albumNode.style.backgroundImage = `url(${this.covers.urlMedium})`;
     albumNode.style.position = "absolute";
     albumNode.style.left =
       (this.releaseYear - startingYear + this.releaseMonth / 12) *
         kTimelineAxisYearWitdh +
+      (isEven ? 0 : 10) +
       "px";
-    albumNode.appendChild(this.covers.render());
-    console.log(this.name, this.releaseYear);
-
+    //albumNode.style.top = isEven ? "10px" : "-10px";
+    albumNode.style.marginTop = isEven ? "8px" : "";
+    albumNode.style.marginBottom = isEven ? "" : "8px";
     return albumNode;
+  }
+
+  renderLink() {
+    let linkNode = document.createElement("a");
+    // linkNode.appendChild(this.covers.render());
+    return linkNode;
   }
 }

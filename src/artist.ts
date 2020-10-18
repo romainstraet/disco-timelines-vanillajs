@@ -100,8 +100,8 @@ export default class Artist {
     let artistNameNode = document.createElement("div");
     artistNameNode.dataset.artistName = "";
     artistNameNode.classList.add("timeline-artist-first-col");
-    artistNameNode.style.backgroundImage = `url(${this.imageUrl})`;
-    artistNameNode.textContent = this.name;
+    artistNameNode.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(${this.imageUrl})`;
+    artistNameNode.innerHTML = "<h2>" + this.name + "</h2>";
     return artistNameNode;
   }
 
@@ -112,8 +112,8 @@ export default class Artist {
     artistDiscoNode.style.width =
       (this.latestReleaseYear - startingYear + 2) * kTimelineAxisYearWitdh +
       "px";
-    this.discography.forEach((album) => {
-      artistDiscoNode.appendChild(album.render(startingYear));
+    this.discography.forEach((album, i) => {
+      artistDiscoNode.appendChild(album.render(startingYear, i % 2 == 0));
     });
     return artistDiscoNode;
   }

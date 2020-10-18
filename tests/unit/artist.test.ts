@@ -73,7 +73,7 @@ describe("Artist class", () => {
 
     describe("Render()", () => {
       let html: HTMLElement;
-      let startingYear = 1962;
+      let startingYear = 1963;
 
       beforeEach(() => {
         html = artist.render(startingYear);
@@ -121,10 +121,10 @@ describe("Artist class", () => {
           artist.discography.length
         );
         expect(html.children[1].innerHTML).toContain(
-          beatlesAlbums.items[10].images[2].url
+          beatlesAlbums.items[10].images[1].url
         );
         expect(html.children[1].innerHTML).toContain(
-          beatlesAlbums.items[5].images[2].url
+          beatlesAlbums.items[5].images[1].url
         );
       });
     });
