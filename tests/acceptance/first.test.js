@@ -7,19 +7,19 @@ test('On launch"', async (browser) => {
     // A user, let's call him James, go on the website
     // He notices that it already shows 2 albums timelines
     // One with the Beatles discography and one with the Rolling Stones discography
-    .expect(Selector('[data-timeline="the-beatles"]').innerText)
-    .contains("The Beatles")
-    .expect(Selector('[data-timeline="the-rolling-stones"]').innerText)
-    .contains("The Rolling Stones")
+    .expect(Selector('[data-artist="the-beatles"]').innerText)
+    .contains("THE BEATLES")
+    .expect(Selector('[data-artist="the-rolling-stones"]').innerText)
+    .contains("THE ROLLING STONES")
 
     // He notices an horizontal axis with the years
     // Starting 1 year before the oldest albums of all album displayed
     // Until 1 year after the latests albums of all albums displayed
-    .expect(Selector('[data-timeline="axis"]').innerText)
-    .contains("1962")
-    .expect(Selector('[data-timeline="axis"]').innerText)
+    .expect(Selector("[data-timelines-axis]").innerText)
+    .contains("1963")
+    .expect(Selector("[data-timelines-axis]").innerText)
     .contains("1986")
-    .expect(Selector('[data-timeline="axis"]').innerText)
+    .expect(Selector("[data-timelines-axis]").innerText)
     .contains("2021");
 
   // He also notices that :
