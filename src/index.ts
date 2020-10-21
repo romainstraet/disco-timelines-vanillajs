@@ -28,5 +28,3 @@ rollingStones.addDiscography(rollingStonesAlbums.items);
 let timelines = new Timelines().addArtists([beatles, rollingStones]);
 
 let timelinesNode = timelines.render();
-
-document.getElementById("timelines")!.replaceWith(timelinesNode);

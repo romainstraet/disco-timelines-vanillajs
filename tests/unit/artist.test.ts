@@ -76,7 +76,7 @@ describe("Artist class", () => {
       let startingYear = 1963;
 
       beforeEach(() => {
-        html = artist.render(startingYear);
+        html = artist.render(startingYear, new HTMLElement());
       });
 
       test("Return an HTML Element", () => {
@@ -102,6 +102,12 @@ describe("Artist class", () => {
 
       test("ArtistName node should contain the name of the artist", () => {
         expect(html.children[0].innerHTML).toContain("The Beatles");
+      });
+
+      test("ArtistName node should have a childnode for removing the artist", () => {
+        expect(
+          html.children[0].children[1].getAttribute("data-artist-remove")
+        ).toBe(artist.id);
       });
 
       test("ArtistDiscography node should have appropriate class", () => {

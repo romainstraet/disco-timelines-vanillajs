@@ -37,7 +37,6 @@ input[type="text"] {
   font-weight: 600;
   &:focus {
     transition: all 0.3s ease-in-out;
-
     box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
   }
 }
@@ -58,7 +57,6 @@ input[type="submit"] {
   box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
   &:hover {
     //transition: all 0.3s ease-in-out;
-
     background-color: #1db954;
   }
   &:active {
@@ -106,7 +104,7 @@ input[type="submit"] {
   background-position: center center;
   border-radius: 20px;
   box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0);
-
+  position: relative;
   h2 {
     font-family: "Roboto", sans-serif;
     font-weight: 900;
@@ -136,4 +134,33 @@ input[type="submit"] {
   }
   background-size: cover;
   background-position: center center;
+}
+
+.button-remove {
+  background: #1ed760;
+  height: 1.6em;
+  width: 1.6em;
+  border: 0px solid #1ed760;
+  border-radius: 2em;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 8px;
+  color: white;
+  font-weight: 800;
+  position: absolute;
+  top: 0px;
+
+  font-family: "Roboto", sans-serif;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.7);
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    background-color: #1db954;
+  }
+  &:active {
+    transition: all 0.1s ease-in-out;
+    background-color: #1ed760;
+  }
 }

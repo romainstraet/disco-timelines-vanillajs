@@ -19,35 +19,57 @@ export default class Timelines {
   addArtists(artists: Array<Artist>): Timelines {
     artists.forEach((artist) => {
       this.artists.push(artist);
-      this.checkIfEarlierOrLaterRelease(artist);
     });
     return this;
   }
 
-  private checkIfEarlierOrLaterRelease(artist: Artist) {
-    if (this.earliestReleaseYear == 0) {
-      this.earliestReleaseYear = artist.earliestReleaseYear;
-      this.latestReleaseYear = artist.latestReleaseYear;
-      return;
-    }
-    if (artist.earliestReleaseYear < this.earliestReleaseYear) {
-      this.earliestReleaseYear = artist.earliestReleaseYear;
-    }
-    if (artist.latestReleaseYear > this.latestReleaseYear) {
-      this.latestReleaseYear = artist.latestReleaseYear;
-    }
+  private checkIfEarlierOrLaterRelease() {
+    this.earliestReleaseYear = 0;
+    this.latestReleaseYear = 0;
+    this.artists.forEach((artist) => {
+      if (this.earliestReleaseYear == 0) {
+        this.earliestReleaseYear = artist.earliestReleaseYear;
+        this.latestReleaseYear = artist.latestReleaseYear;
+        return;
+      }
+      if (artist.earliestReleaseYear < this.earliestReleaseYear) {
+        this.earliestReleaseYear = artist.earliestReleaseYear;
+      }
+      if (artist.latestReleaseYear > this.latestReleaseYear) {
+        this.latestReleaseYear = artist.latestReleaseYear;
+      }
+    });
   }
 
   render(): HTMLElement {
+    this.checkIfEarlierOrLaterRelease();
+
     let timelinesNode = document.createElement("div");
     timelinesNode.id = "timelines";
     timelinesNode.dataset.timelines = "";
     timelinesNode.classList.add("timelines");
     timelinesNode.style.width = this.calculateWidthOfTimelines();
     this.artists.forEach((artist) => {
-      timelinesNode.appendChild(artist.render(this.earliestReleaseYear));
+      //// TEST/////
+      let artistRemoveNode = document.createElement("button");
+      artistRemoveNode.dataset.artistRemove = artist.id;
+      artistRemoveNode.classList.add("button-remove");
+      artistRemoveNode.innerText = "x";
+      artistRemoveNode.addEventListener("click", (e: MouseEvent) => {
+        let node = e.target as HTMLElement;
+        let artistId = node.dataset.artistRemove as string;
+        let index = this.artists.findIndex((v) => v.id == artistId);
+        this.artists.splice(index, 1);
+        this.render();
+      });
+      //////TEST//////
+
+      timelinesNode.appendChild(
+        artist.render(this.earliestReleaseYear, artistRemoveNode)
+      );
     });
     timelinesNode.appendChild(this.renderTimelineAxis());
+    document.getElementById("timelines")!.replaceWith(timelinesNode);
     return timelinesNode;
   }
 
@@ -58,6 +80,9 @@ export default class Timelines {
     axisNode.appendChild(this.renderTimelineAxisFirstCol());
     this.generateYearsArray().forEach((year) => {
       const yearNode = this.renderTimelineAxisYearCol(year);
+      if (year % 10 == 0) {
+        yearNode.style.color = "#1ed760";
+      }
       axisNode.appendChild(yearNode);
     });
     return axisNode;
@@ -96,6 +121,8 @@ export default class Timelines {
       "px"
     );
   }
+
+  removeArtist() {}
 }
 
 // export default class Timelines {

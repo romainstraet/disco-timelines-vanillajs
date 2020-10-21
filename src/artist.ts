@@ -86,22 +86,23 @@ export default class Artist {
     });
   }
 
-  render(startingYear: number): HTMLElement {
+  render(startingYear: number, artistRemoveNode: HTMLElement): HTMLElement {
     let artistNode = document.createElement("div");
     artistNode.id = this.id;
     artistNode.dataset.artist = normalizeString(this.name);
     artistNode.classList.add("timeline-artist");
-    artistNode.appendChild(this.renderArtistNameNode());
+    artistNode.appendChild(this.renderArtistNameNode(artistRemoveNode));
     artistNode.appendChild(this.renderArtistDiscographyNode(startingYear));
     return artistNode;
   }
 
-  private renderArtistNameNode(): HTMLElement {
+  private renderArtistNameNode(artistRemoveNode: HTMLElement): HTMLElement {
     let artistNameNode = document.createElement("div");
     artistNameNode.dataset.artistName = "";
     artistNameNode.classList.add("timeline-artist-first-col");
     artistNameNode.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url(${this.imageUrl})`;
     artistNameNode.innerHTML = "<h2>" + this.name + "</h2>";
+    artistNameNode.appendChild(artistRemoveNode);
     return artistNameNode;
   }
 
