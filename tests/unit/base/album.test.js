@@ -1,7 +1,7 @@
-import Album from "../../../src/base/album";
+import Album from "../../../src/models/album";
 
 /**
- * @type {import("../../../src/base/album").SpotifyAlbum} beatlesAlbum
+ * @type {import("../../../src/models/album").SpotifyAlbum} beatlesAlbum
  */
 let beatlesAlbum = {
   id: "whatever",
@@ -45,8 +45,8 @@ describe("ALBUM CLASS", () => {
   test("Should extract release year and month", async () => {
     let releaseDates = [
       ["2020-01-09", 2020, 1],
-      ["1999-12-18", 1999, 12],
-      ["1954-03-21", 1954, 3],
+      ["1999-12", 1999, 12],
+      ["1954", 1954, 0],
     ];
     releaseDates.forEach((releaseDate) => {
       beatlesAlbum.release_date = releaseDate[0].toString();

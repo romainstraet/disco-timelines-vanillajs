@@ -23,6 +23,7 @@ describe("OBSERVER BASE CLASS", () => {
     });
 
     test("Update method should be implemented", async () => {
+      /** @param {any} x */
       observer.update = (x) => x;
       let res = observer.update("data");
       expect(res).toBe("data");

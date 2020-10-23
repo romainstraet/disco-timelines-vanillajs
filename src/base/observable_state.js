@@ -1,8 +1,9 @@
+import Artist from "../models/artist";
 import Observable from "./observable";
 
 /**
  * @typedef {Object} State
- * @property {Array} artists
+ * @property {Artist[]} artists
  * @property {number} earliestReleaseYear
  * @property {number} latestReleaseYear
  */
@@ -19,6 +20,49 @@ export default class ObservableState extends Observable {
     }
   ) {
     super();
+    /** @private */
     this._state = state;
+  }
+
+  get artists() {
+    return this._state.artists;
+  }
+
+  get earliestReleaseYear() {
+    return this._state.earliestReleaseYear;
+  }
+
+  get latestReleaseYear() {
+    return this._state.latestReleaseYear;
+  }
+
+  /**
+   * @param {Artist[]} artists
+   */
+  addArtists(artists) {
+    this._state.artists.push(...artists);
+    this._sortArtistsChronologically();
+    this._setEarliestAndLatestReleaseYear();
+    this.notifyObservers(this._state);
+  }
+
+  /**
+   * @private
+   */
+  _sortArtistsChronologically() {
+    this._state.artists.sort((a, b) => {
+      return a.earliestReleaseYear - b.earliestReleaseYear;
+    });
+  }
+
+  /**
+   * @private
+   */
+  _setEarliestAndLatestReleaseYear() {
+    this._state.earliestReleaseYear = this._state.artists[0].earliestReleaseYear;
+    let lastArtistIndex = this.artists.length - 1;
+    this._state.latestReleaseYear = this._state.artists[
+      lastArtistIndex
+    ].latestReleaseYear;
   }
 }

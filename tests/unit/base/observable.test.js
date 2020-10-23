@@ -1,5 +1,6 @@
 import Observable from "../../../src/base/observable.js";
 import Observer from "../../../src/base/observer.js";
+import { ObserverImpl } from "./_mock_class.js";
 
 describe("OBSERVABLE BASE CLASS", () => {
   test("Cannot be instantiated directly", async () => {
@@ -19,15 +20,6 @@ describe("OBSERVABLE BASE CLASS", () => {
 
     beforeEach(() => {
       class ObservableImpl extends Observable {}
-      class ObserverImpl extends Observer {
-        constructor() {
-          super();
-          this.data = "";
-        }
-        update(data) {
-          this.data = data;
-        }
-      }
       class Other {}
       observable = new ObservableImpl();
       observer = new ObserverImpl();
@@ -66,11 +58,11 @@ describe("OBSERVABLE BASE CLASS", () => {
 
       test("Observers can be notified with new data", async () => {
         observable.notifyObservers("data");
-        expect(observer.data).toBe("data");
-        expect(observer2.data).toBe("data");
+        expect(observer.state).toBe("data");
+        expect(observer2.state).toBe("data");
         observable.notifyObservers("new data");
-        expect(observer.data).toBe("new data");
-        expect(observer2.data).toBe("new data");
+        expect(observer.state).toBe("new data");
+        expect(observer2.state).toBe("new data");
       });
     });
   });

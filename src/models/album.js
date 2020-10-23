@@ -4,7 +4,7 @@
  * @property {string} name
  * @property {string} release_date - "yyyy-mm-dd"
  * @property {ExternalUrls} external_urls
- * @property {AlbumCoverUrls[]} images
+ * @property {AlbumCoverUrl[]} images
  */
 
 /**
@@ -13,7 +13,7 @@
  */
 
 /**
- * @typedef {Object} AlbumCoverUrls
+ * @typedef {Object} AlbumCoverUrl
  * @property {String} url
  */
 
@@ -68,7 +68,7 @@ export default class Album {
 
   /**
    * @private
-   * @param {AlbumCoverUrls[]} images
+   * @param {AlbumCoverUrl[]} images
    * @returns {string}
    */
   _getCoverUrl(images) {
