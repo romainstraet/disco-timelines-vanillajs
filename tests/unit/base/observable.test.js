@@ -2,11 +2,11 @@ import Observable from "../../../src/base/observable.js";
 import Observer from "../../../src/base/observer.js";
 
 describe("OBSERVABLE BASE CLASS", () => {
-  test("Cannot be instantiated directly", () => {
+  test("Cannot be instantiated directly", async () => {
     expect(() => new Observable()).toThrowError();
   });
 
-  test("Can be implemented", () => {
+  test("Can be implemented", async () => {
     class ObservableImpl extends Observable {}
     expect(() => new ObservableImpl()).not.toThrowError();
   });
@@ -35,7 +35,7 @@ describe("OBSERVABLE BASE CLASS", () => {
       notAnObserver = new Other();
     });
 
-    test("Observers can subscribe", () => {
+    test("Observers can subscribe", async () => {
       observable.subscribe(observer);
       expect(observable.observers.length).toBe(1);
       expect(observable.observers).toContain(observer);
@@ -44,18 +44,18 @@ describe("OBSERVABLE BASE CLASS", () => {
       expect(observable.observers).toContain(observer2);
     });
 
-    test("Not Observers cannot subscribe", () => {
+    test("Not Observers cannot subscribe", async () => {
       observable.subscribe(notAnObserver);
       expect(observable.observers.length).toBe(0);
     });
 
-    describe("Observes has subscribed", () => {
+    describe("Observers has subscribed", () => {
       beforeEach(() => {
         observable.subscribe(observer);
         observable.subscribe(observer2);
       });
 
-      test("Observers can unsubscribe", () => {
+      test("Observers can unsubscribe", async () => {
         observable.unsubscribe(observer);
         expect(observable.observers.length).toBe(1);
         expect(() => observable.unsubscribe(notAnObserver)).not.toThrowError();
@@ -64,7 +64,7 @@ describe("OBSERVABLE BASE CLASS", () => {
         expect(observable.observers.length).toBe(0);
       });
 
-      test("Observers can be notified with new data", () => {
+      test("Observers can be notified with new data", async () => {
         observable.notifyObservers("data");
         expect(observer.data).toBe("data");
         expect(observer2.data).toBe("data");

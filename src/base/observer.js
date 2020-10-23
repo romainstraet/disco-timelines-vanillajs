@@ -7,6 +7,9 @@ export default class Observer {
     }
   }
 
+  /**
+   * @param {any} data
+   */
   update(data) {
     throw new Error("Unimplemented method");
   }
