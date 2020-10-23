@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "webpack --watch",
+    "test": "jest",
     "test:unit": "jest tests/unit",
     "test:acceptance": "testcafe chrome tests/acceptance"
   },
