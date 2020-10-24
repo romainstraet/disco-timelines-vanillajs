@@ -1,5 +1,5 @@
-import AlbumCover from "../../../src/_old/album_cover";
-import beatlesAlbums from "../../../src/data/beatles_albums";
+import AlbumCover from "../src/_old/album_cover";
+import beatlesAlbums from "../src/data/beatles_albums";
 
 describe("AlbumCover class", () => {
   describe("Instantiation/Creation", () => {

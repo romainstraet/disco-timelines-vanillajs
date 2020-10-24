@@ -1,6 +1,6 @@
 import Observable from "../../../src/base/observable.js";
 import Observer from "../../../src/base/observer.js";
-import { ObserverImpl } from "./_mock_class.js";
+import { ObserverImpl } from "../_helpers/mock_class.js";
 
 describe("OBSERVABLE BASE CLASS", () => {
   test("Cannot be instantiated directly", async () => {
