@@ -6,6 +6,7 @@ import {
   kTimelineFirstColWidth,
   kTimelineAxisYearWidth,
 } from "../scss/constants";
+import { artistDefaultEl } from "../elements/artist-default";
 
 export default class Artists extends Observer {
   /**
@@ -44,6 +45,7 @@ export default class Artists extends Observer {
       let el = artistEl(artist, this._appState.earliestReleaseYear);
       children.push(el);
     });
+    if (children.length == 0) children.push(artistDefaultEl());
 
     // create component
     let component = elFactory("div", { attributes, style }, children);
