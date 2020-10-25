@@ -1,4 +1,4 @@
-import ObservableState from "../../../src/base/observable_state";
+import ObservableState from "../../../src/state";
 import Observer from "../../../src/base/observer";
 import TimelineAxis from "../../../src/components/timelines_axis";
 import { artists, albums } from "../_helpers/mock_data";
@@ -8,7 +8,7 @@ let _albums = albums();
 _artists[0].addDiscography(_albums[0]);
 _artists[1].addDiscography(_albums[1]);
 
-describe("TIMELINE AXIS CLASS", () => {
+describe("TIMELINE AXIS OBSERVER CLASS", () => {
   let appState;
 
   beforeEach(() => {

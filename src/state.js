@@ -1,5 +1,5 @@
-import Artist from "../models/artist";
-import Observable from "./observable";
+import Artist from "./models/artist";
+import Observable from "./base/observable";
 
 /**
  * @typedef {Object} State

@@ -8,5 +8,5 @@ export function timelineAxisFirstColEl() {
     class: "timeline-axis-first-col",
   };
 
-  return elFactory("div", attributes);
+  return elFactory("div", { attributes });
 }

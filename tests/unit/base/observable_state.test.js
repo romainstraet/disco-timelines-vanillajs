@@ -1,5 +1,5 @@
 import Observable from "../../../src/base/observable.js";
-import ObservableState from "../../../src/base/observable_state.js";
+import ObservableState from "../../../src/state.js";
 
 import { ObserverImpl } from "../_helpers/mock_class.js";
 import { artists, albums } from "../_helpers/mock_data";

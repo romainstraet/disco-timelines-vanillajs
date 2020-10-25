@@ -7,16 +7,23 @@ describe("ELEMENT FACTORY FUNCTION", () => {
     expect(el.tagName.toLowerCase()).toBe("div");
   });
 
-  test("Should create the element with attributes", async () => {
-    let el = elFactory("div", { id: 1, class: "element", "data-name": "el" });
+  test("Should create the element with attributes ", async () => {
+    let el = elFactory("div", {
+      attributes: { id: 1, class: "element", "data-name": "el" },
+    });
     expect(el.id).toContain(1);
     expect(el.className).toContain("element");
     expect(el.dataset.name).toContain("el");
   });
 
+  test("Should create the element with style", async () => {
+    let el = elFactory("div", { style: { color: "rgb(240, 240, 240)" } });
+    expect(el.style.color).toBe("rgb(240, 240, 240)");
+  });
+
   test("Should create the element with children", async () => {
     let children = [elFactory("div"), "Hello"];
-    let el = elFactory("div", { id: 1 }, children);
+    let el = elFactory("div", { attributes: { id: 1 } }, children);
     expect(el.childNodes.length).toBe(2);
     expect(el.children[0].tagName.toLowerCase()).toBe("div");
     expect(el.textContent).toBe("Hello");

@@ -1,15 +1,24 @@
 /**
+ * @typedef {object} Options
+ * @property {object=} attributes - https://developer.mozilla.org/fr/docs/Web/HTML/Attributs
+ * @property {object=} style
+ */
+
+/**
  * @param {string} type
- * @param {object} attributes - https://developer.mozilla.org/fr/docs/Web/HTML/Attributs
- * @param {(HTMLElement|string)[]} children
+ * @param {Options=} options
+ * @param {(HTMLElement|string)[]=} children
  * @returns {HTMLElement}
  */
-export function elFactory(type, attributes = {}, children = []) {
+export function elFactory(type, options = {}, children = []) {
   let el = document.createElement(type);
-  //let el = Object.assign(newEl, attributes);
 
-  for (let key in attributes) {
-    el.setAttribute(key, attributes[key]);
+  for (let key in options.attributes) {
+    el.setAttribute(key, options.attributes[key]);
+  }
+
+  for (let key in options.style) {
+    el.style[key] = options.style[key];
   }
 
   children.forEach((child) => {
@@ -19,6 +28,6 @@ export function elFactory(type, attributes = {}, children = []) {
       el.appendChild(child);
     }
   });
-
+  //options.children.forEach((child) => {});
   return el;
 }

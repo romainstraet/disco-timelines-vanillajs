@@ -9,9 +9,7 @@ export function timelineAxisYearEl(year) {
     class: "timeline-axis-year",
   };
 
-  if (year % 10 == 0) {
-    attributes.color = "#1ed760";
-  }
+  let style = year % 10 == 0 ? { color: "#1ed760" } : {};
 
-  return elFactory("div", attributes, [year.toString()]);
+  return elFactory("div", { attributes, style }, [year.toString()]);
 }

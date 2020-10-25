@@ -1,4 +1,4 @@
-import ObservableState from "../base/observable_state";
+import ObservableState from "../state";
 import Observer from "../base/observer";
 import { elFactory } from "../elements/@element_factory";
 import { timelineAxisFirstColEl } from "../elements/timeline_axis_first_col";
@@ -14,6 +14,13 @@ export default class TimelineAxis extends Observer {
   }
 
   /**
+   *
+   */
+  update() {
+    this.render();
+  }
+
+  /**
    * @returns {void}
    */
   render() {
@@ -22,6 +29,9 @@ export default class TimelineAxis extends Observer {
       id: "timeline-axis",
       class: "timeline-axis",
     };
+
+    // styles
+
     // children
     let firstCol = timelineAxisFirstColEl();
     let yearsArray = this._generateArrayOfYears();
@@ -29,19 +39,13 @@ export default class TimelineAxis extends Observer {
     for (let i = 0; i < yearsArray.length; i++) {
       yearsElements.push(timelineAxisYearEl(yearsArray[i]));
     }
+    let children = [firstCol, ...yearsElements];
 
     // create component
-    let component = elFactory("div", attributes, [firstCol, ...yearsElements]);
+    let component = elFactory("div", { attributes }, children);
 
     // manipulate Dom
     document.getElementById("timeline-axis").replaceWith(component);
-  }
-
-  /**
-   *
-   */
-  update() {
-    this.render();
   }
 
   /**

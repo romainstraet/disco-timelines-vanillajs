@@ -1,4 +1,5 @@
 {
+    "editor.wordWrapColumn": 120,
     "javascript.implicitProjectConfig.checkJs": true,
     "javascript.suggest.completeJSDocs": true,
         "typescript.suggest.completeJSDocs": true
