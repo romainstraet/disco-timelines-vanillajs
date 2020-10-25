@@ -3,6 +3,10 @@ import Observer from "../base/observer";
 import { elFactory } from "../elements/@element_factory";
 import { timelineAxisFirstColEl } from "../elements/timeline_axis_first_col";
 import { timelineAxisYearEl } from "../elements/timeline_axis_year";
+import {
+  kTimelineAxisYearWidth,
+  kTimelineFirstColWidth,
+} from "../scss/constants";
 
 export default class TimelineAxis extends Observer {
   /**
@@ -31,6 +35,9 @@ export default class TimelineAxis extends Observer {
     };
 
     // styles
+    let style = {
+      width: this._calculateWidth(),
+    };
 
     // children
     let firstCol = timelineAxisFirstColEl();
@@ -42,7 +49,7 @@ export default class TimelineAxis extends Observer {
     let children = [firstCol, ...yearsElements];
 
     // create component
-    let component = elFactory("div", { attributes }, children);
+    let component = elFactory("div", { attributes, style }, children);
 
     // manipulate Dom
     document.getElementById("timeline-axis").replaceWith(component);
@@ -53,17 +60,25 @@ export default class TimelineAxis extends Observer {
    * @returns {number[]}
    */
   _generateArrayOfYears() {
-    let currentYear =
-      this._appState.latestReleaseYear == 0
-        ? new Date(Date.now()).getFullYear()
-        : null;
-    let endingYear =
-      currentYear == null ? this._appState.latestReleaseYear : currentYear - 1; // current year will be re-added in year diff
-    let startingYear =
-      currentYear == null
-        ? this._appState.earliestReleaseYear
-        : currentYear - 10;
-    const yearsDiff = endingYear - startingYear + 2; // +2 to include all the years in range + 1 additional year
-    return Array.from(new Array(yearsDiff), (_, i) => i + startingYear);
+    const yearsDiff =
+      this._appState.latestReleaseYear - this._appState.earliestReleaseYear + 2; // +2 to include all the years in range + 1 additional year
+    return Array.from(
+      new Array(yearsDiff),
+      (_, i) => i + this._appState.earliestReleaseYear
+    );
+  }
+
+  /**
+   * @private
+   */
+  _calculateWidth() {
+    return (
+      kTimelineFirstColWidth +
+      kTimelineAxisYearWidth *
+        (this._appState.latestReleaseYear -
+          this._appState.earliestReleaseYear +
+          2) +
+      "px"
+    );
   }
 }

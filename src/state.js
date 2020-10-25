@@ -1,5 +1,5 @@
-import Artist from "./models/artist";
 import Observable from "./base/observable";
+import Artist from "./models/artist";
 
 /**
  * @typedef {Object} State
@@ -15,8 +15,8 @@ export default class ObservableState extends Observable {
   constructor(
     state = {
       artists: [],
-      earliestReleaseYear: 0,
-      latestReleaseYear: 0,
+      latestReleaseYear: new Date(Date.now()).getFullYear() - 1,
+      earliestReleaseYear: new Date(Date.now()).getFullYear() - 10,
     }
   ) {
     super();

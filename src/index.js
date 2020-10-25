@@ -16,7 +16,6 @@ beatles.addDiscography(beatlesAlbums.items);
 rollingStones.addDiscography(rollingStonesAlbums.items);
 
 let appState = new ObservableState();
-appState.addArtists([beatles, rollingStones]);
-
+//appState.addArtists([beatles, rollingStones]);
 new TimelineAxis(appState).render();
 new Artists(appState).render();
