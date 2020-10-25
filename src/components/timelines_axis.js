@@ -32,6 +32,7 @@ export default class TimelineAxis extends Observer {
     let attributes = {
       id: "timeline-axis",
       class: "timeline-axis",
+      "data-timeline-axis": "",
     };
 
     // styles

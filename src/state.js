@@ -69,6 +69,13 @@ export default class ObservableState extends Observable {
    * @private
    */
   _setEarliestAndLatestReleaseYear() {
+    if (this._state.artists.length == 0) {
+      let currentYear = new Date(Date.now()).getFullYear();
+      this._state.latestReleaseYear = currentYear - 1;
+      this._state.earliestReleaseYear = currentYear - 10;
+      console.log(this.earliestReleaseYear, this.latestReleaseYear);
+      return;
+    }
     this._state.earliestReleaseYear = this._state.artists[0].earliestReleaseYear;
     let lastArtistIndex = this.artists.length - 1;
     this._state.latestReleaseYear = this._state.artists[

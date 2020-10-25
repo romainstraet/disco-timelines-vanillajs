@@ -3,17 +3,18 @@ import { Selector } from "testcafe";
 fixture("Website").page("../../dist/index.html");
 
 test('On launch"', async (browser) => {
-  let beatlesTimeline = Selector('[data-artist="the-beatles"]');
+  let beatlesTimeline = Selector('[data-artist="The Beatles"]');
   let beatlesDisco = beatlesTimeline.child("[data-artist-discography]");
   let beatlesFirstAlbumPosition = beatlesDisco.child(0).offsetLeft;
   let beatlesLastAlbumPosition = beatlesDisco.child(-1).offsetLeft;
   let beatlesAlbumsCount = beatlesDisco.childElementCount;
-  let rStonesTimeline = Selector('[data-artist="the-rolling-stones"]');
+
+  let rStonesTimeline = Selector('[data-artist="The Rolling Stones"]');
   let rStonesDisco = rStonesTimeline.child("[data-artist-discography]");
   let rStonesFirstAlbumPosition = await rStonesDisco.child(0).offsetLeft;
   let rStonesLastAlbumPosition = await rStonesDisco.child(-1).offsetLeft;
   let rStonesAlbumsCount = await rStonesDisco.childElementCount;
-  let axisTimeline = Selector("[data-timelines-axis]");
+  let axisTimeline = Selector("[data-timeline-axis]");
 
   // James goes on the website
   // He notices that it already shows 2 albums timelines

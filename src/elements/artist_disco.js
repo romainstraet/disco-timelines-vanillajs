@@ -10,6 +10,7 @@ import { artistDiscoAlbumEl } from "./artist_disco_album";
 export function artistDiscoEl(discography, startYear) {
   let attributes = {
     class: "timeline-artist-disco",
+    "data-artist-discography": "",
   };
 
   let albumChildren = [];
