@@ -6,8 +6,7 @@ export class ObserverImpl extends Observer {
     this.state = "";
   }
 
-  /** @param {any} state */
-  update(state) {
-    this.state = state;
+  update() {
+    this.state = "updated";
   }
 }

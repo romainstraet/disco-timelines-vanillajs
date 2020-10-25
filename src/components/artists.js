@@ -42,7 +42,9 @@ export default class Artists extends Observer {
     // children
     let children = [];
     this._appState.artists.forEach((artist) => {
-      let el = artistEl(artist, this._appState.earliestReleaseYear);
+      let el = artistEl(artist, this._appState.earliestReleaseYear, () =>
+        this._appState.removeArtist(artist.id)
+      );
       children.push(el);
     });
     if (children.length == 0) children.push(artistDefaultEl());

@@ -47,6 +47,16 @@ export default class ObservableState extends Observable {
   }
 
   /**
+   * @param {string} id
+   */
+  removeArtist(id) {
+    let index = this._state.artists.findIndex((v) => v.id == id);
+    this._state.artists.splice(index, 1);
+    this._setEarliestAndLatestReleaseYear();
+    this.notifyObservers(this._state);
+  }
+
+  /**
    * @private
    */
   _sortArtistsChronologically() {

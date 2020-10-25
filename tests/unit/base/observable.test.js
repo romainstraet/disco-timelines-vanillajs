@@ -57,12 +57,11 @@ describe("OBSERVABLE BASE CLASS", () => {
       });
 
       test("Observers can be notified with new data", async () => {
-        observable.notifyObservers("data");
-        expect(observer.state).toBe("data");
-        expect(observer2.state).toBe("data");
-        observable.notifyObservers("new data");
-        expect(observer.state).toBe("new data");
-        expect(observer2.state).toBe("new data");
+        expect(observer.state).toBe("");
+        expect(observer2.state).toBe("");
+        observable.notifyObservers("whatever");
+        expect(observer.state).toBe("updated");
+        expect(observer2.state).toBe("updated");
       });
     });
   });

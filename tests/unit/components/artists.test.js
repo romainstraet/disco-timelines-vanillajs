@@ -83,6 +83,13 @@ describe("ARTISTS OBSERVER CLASS", () => {
         );
       });
 
+      test("First child should contain a remove artist button", async () => {
+        new Artists(appState).render();
+        let button = document.getElementsByClassName("button-remove");
+        expect(button.length).toBe(2);
+        expect(button[0].getAttribute("data-artist-id")).toBe(_artists[1].id);
+      });
+
       test("Second child should contain the album of the artist", async () => {
         new Artists(appState).render();
         let discoEl = document.getElementsByClassName(
@@ -95,7 +102,17 @@ describe("ARTISTS OBSERVER CLASS", () => {
       });
     });
 
-    // test first child should contain name
-    // test second child should contain albums
+    describe("On Update Method", () => {
+      test("When update method is called, HTMLElement is re-renderd", async () => {
+        let artists = new Artists(appState);
+        artists.render();
+        appState.subscribe(artists);
+        appState.addArtists(_artists); // Should notify observers with their update method
+        let el = document.getElementById("timeline-artists");
+        appState.removeArtist(_artists[0].id);
+        let updatedEl = document.getElementById("timeline-artists");
+        expect(updatedEl.children.length).toBe(el.children.length - 1);
+      });
+    });
   });
 });
