@@ -1,10 +1,9 @@
 import { Selector } from "testcafe";
 
-fixture("Website").page("../../dist/index.html");
+fixture("Website").page("http://localhost:8080/");
 
 test('On remove artist"', async (browser) => {
-  // James has familiarized with the site which shows
-  // prepopulated data (The Beatles and The Rolling Stones)
+  // James sees prepopulated data (The Beatles and The Rolling Stones)
   let timelines = Selector("#timelines");
   await browser.expect(timelines.innerText).contains("THE BEATLES");
   await browser.expect(timelines.innerText).contains("THE ROLLING STONES");
@@ -13,7 +12,7 @@ test('On remove artist"', async (browser) => {
   // He tries first to remove The Beatles and sees the little "X"
   // Button next to the artist name and click on it
   let beatlesTimeline = Selector('[data-artist="The Beatles"]');
-  let beatlesRemoveButton = beatlesTimeline.child(0).child("[data-artist-id]");
+  let beatlesRemoveButton = beatlesTimeline.child(0).child(".button-remove");
   await browser.click(beatlesRemoveButton);
 
   // The Beatles timeline has now disappeard

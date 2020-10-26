@@ -1,6 +1,6 @@
 import { Selector } from "testcafe";
 
-fixture("Website").page("../../dist/index.html");
+fixture("Website").page("http://localhost:8080/");
 
 test('On launch"', async (browser) => {
   let beatlesTimeline = Selector('[data-artist="The Beatles"]');

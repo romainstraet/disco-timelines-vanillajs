@@ -4,9 +4,9 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "dev": "webpack --watch",
+    "dev": "webpack-dev-server",
     "test:unit": "jest tests/unit",
-    "test:acceptance": "testcafe chrome tests/acceptance"
+    "test:acceptance": "testcafe chrome tests/acceptance --app \"npm run dev\" --app-init-delay 3000"
   },
   "author": "",
   "license": "ISC",
@@ -22,7 +22,8 @@
     "style-loader": "^2.0.0",
     "testcafe": "^1.9.4",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "jest": {
     "transform": {
