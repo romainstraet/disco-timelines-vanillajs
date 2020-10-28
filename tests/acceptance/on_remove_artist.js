@@ -1,6 +1,6 @@
 import { Selector } from "testcafe";
 
-fixture("Website").page("http://localhost:8080/");
+fixture("Website").skip.page("http://localhost:8080/");
 
 test('On remove artist"', async (browser) => {
   // James sees prepopulated data (The Beatles and The Rolling Stones)
