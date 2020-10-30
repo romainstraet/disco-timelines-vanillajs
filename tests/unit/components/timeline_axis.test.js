@@ -2,17 +2,21 @@ import ObservableState from "../../../src/state";
 import Observer from "../../../src/base/observer";
 import TimelineAxis from "../../../src/components/timelines_axis";
 import { artists, albums } from "../_helpers/mock_data";
+import SpotifyApi from "../../../src/services/spotify_api";
+import Config from "../../../src/config";
 
 let _artists = artists();
 let _albums = albums();
 _artists[0].addDiscography(_albums[0]);
 _artists[1].addDiscography(_albums[1]);
 
+let spotifyApi = new SpotifyApi(Config.Spotify);
+
 describe("TIMELINE AXIS OBSERVER CLASS", () => {
   let appState;
 
   beforeEach(() => {
-    appState = new ObservableState();
+    appState = new ObservableState(spotifyApi);
   });
 
   test("Should be an implementation of the Observable base class", async () => {
@@ -55,7 +59,7 @@ describe("TIMELINE AXIS OBSERVER CLASS", () => {
     });
 
     test("If earliest/latest release year are set, HTMLElement should returns a custom axis", async () => {
-      let appState = new ObservableState({
+      let appState = new ObservableState(spotifyApi, {
         artists: [],
         earliestReleaseYear: 1960,
         latestReleaseYear: 1975,

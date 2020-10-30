@@ -3,17 +3,21 @@ import Observer from "../../../src/base/observer";
 import TimelineAxis from "../../../src/components/timelines_axis";
 import { artists, albums } from "../_helpers/mock_data";
 import Artists from "../../../src/components/artists";
+import Config from "../../../src/config";
+import SpotifyApi from "../../../src/services/spotify_api.js";
 
 let _artists = artists();
 let _albums = albums();
 _artists[0].addDiscography(_albums[0]);
 _artists[1].addDiscography(_albums[1]);
 
+let spotifyApi = new SpotifyApi(Config.Spotify);
+
 describe("ARTISTS OBSERVER CLASS", () => {
   let appState;
 
   beforeEach(() => {
-    appState = new ObservableState();
+    appState = new ObservableState(spotifyApi);
     appState.addArtists(_artists);
   });
 

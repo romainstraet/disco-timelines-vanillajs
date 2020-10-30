@@ -2,14 +2,14 @@ export default class User {
   /**
    * @param {string} accessToken
    */
-  constructor(accessToken) {
+  constructor(accessToken = "") {
     this.accessToken = accessToken;
   }
 
   /**
    * @returns {string}
    */
-  generateStateKey() {
+  getAndStoreStateKey() {
     let stateKey = this._generateRandomString(10);
     localStorage.setItem("stateKey", stateKey);
     return stateKey;
@@ -20,10 +20,9 @@ export default class User {
    * @returns {boolean}
    */
 
-  verifyStateKey(stateKey) {
+  isValidKey(stateKey) {
     let validKey = localStorage.getItem("stateKey");
     let response = validKey === stateKey ? true : false;
-    localStorage.removeItem("stateKey");
     return response;
   }
 

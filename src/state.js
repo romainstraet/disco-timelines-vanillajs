@@ -1,5 +1,7 @@
 import Observable from "./base/observable";
 import Artist from "./models/artist";
+import User from "./models/user";
+import SpotifyApi from "./services/spotify_api";
 
 /**
  * @typedef {Object} State
@@ -11,8 +13,10 @@ import Artist from "./models/artist";
 export default class ObservableState extends Observable {
   /**
    * @param {State} state
+   * @param {SpotifyApi} spotifyApi
    */
   constructor(
+    spotifyApi,
     state = {
       artists: [],
       latestReleaseYear: new Date(Date.now()).getFullYear() - 1,
@@ -21,7 +25,11 @@ export default class ObservableState extends Observable {
   ) {
     super();
     /** @private */
+    this._spotifyApi = spotifyApi;
+    /** @private */
     this._state = state;
+    /** @private */
+    this._user = new User();
   }
 
   get artists() {
@@ -34,6 +42,10 @@ export default class ObservableState extends Observable {
 
   get latestReleaseYear() {
     return this._state.latestReleaseYear;
+  }
+
+  get isAuth() {
+    return this._user.accessToken != "" ? true : false;
   }
 
   /**
@@ -54,6 +66,27 @@ export default class ObservableState extends Observable {
     this._state.artists.splice(index, 1);
     this._setEarliestAndLatestReleaseYear();
     this.notifyObservers(this._state);
+  }
+
+  /**
+   * @returns {void}
+   */
+  signOnSpotify() {
+    let stateKey = this._user.getAndStoreStateKey();
+    this._spotifyApi.signOn(stateKey, window.location);
+  }
+
+  /**
+   * @param {string} accessToken
+   * @param {string} stateKey
+   * @returns {boolean}
+   */
+  addUser(accessToken, stateKey) {
+    if (accessToken == "") return false;
+    if (!this._user.isValidKey(stateKey)) return false;
+    this._user.accessToken = accessToken;
+    this.notifyObservers(this._state);
+    return true;
   }
 
   /**

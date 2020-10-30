@@ -64,3 +64,40 @@ input[type="submit"] {
     box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0);
   }
 }
+
+.button-sign-on-spotify {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border: 0px solid #1ed760;
+  background: rgb(24, 166, 74);
+  background: linear-gradient(
+    47deg,
+    rgb(25, 181, 80) 0%,
+    rgba(30, 215, 96, 1) 100%
+  );
+
+  border-radius: 20px;
+  box-sizing: border-box;
+  outline: none;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  .spotify-icon {
+    margin-right: 15px;
+    height: 40px;
+    width: 40px;
+  }
+
+  &:hover {
+    //transition: all 0.3s ease-in-out;
+    background: #1db954;
+  }
+  &:active {
+    //transition: all 0.3s ease-in-out;
+    background: #1ed760;
+    box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0);
+  }
+}
