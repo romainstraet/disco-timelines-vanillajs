@@ -18,6 +18,7 @@
     "babel-loader": "^8.1.0",
     "css-loader": "^5.0.0",
     "file-loader": "^6.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^26.5.2",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.3",
@@ -30,6 +31,9 @@
   "jest": {
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/unit/_helpers/file_mock.js"
     }
   }
 }

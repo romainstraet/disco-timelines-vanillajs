@@ -59,6 +59,13 @@ export default class ObservableState extends Observable {
   }
 
   /**
+   * @param {string} artistName
+   */
+  searchAndAddArtist(artistName) {
+    console.log(artistName);
+  }
+
+  /**
    * @param {string} id
    */
   removeArtist(id) {

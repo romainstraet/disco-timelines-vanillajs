@@ -47,6 +47,30 @@ describe("SEARCH ARTIST OBSERVER CLASS", () => {
       expect(el.innerHTML).toContain("Sign on");
       expect(el.innerHTML).not.toContain("Add Artist");
     });
+
+    test("Sign on button should have a onclick method", async () => {
+      new SearchArtist(appState).render();
+      let el = document.getElementById("search-artist");
+      let button = el.querySelector("button");
+      expect(button.onclick).not.toBeUndefined();
+    });
+
+    test("If user is signed in, should render a search input box", async () => {
+      appState._user.accessToken = "whatever";
+      new SearchArtist(appState).render();
+      let el = document.getElementById("search-artist");
+      expect(el.childElementCount).toBe(1);
+      expect(el.innerHTML).not.toContain("Sign on");
+      expect(el.innerHTML).toContain("Add Artist");
+    });
+
+    test("Search box button should have an onclick method", async () => {
+      appState._user.accessToken = "whatever";
+      new SearchArtist(appState).render();
+      let el = document.getElementById("search-artist");
+      let button = el.querySelectorAll("input");
+      expect(button[1].onclick).not.toBeUndefined();
+    });
   });
 
   describe("On Update Method", () => {

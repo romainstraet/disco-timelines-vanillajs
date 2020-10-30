@@ -32,7 +32,9 @@ export default class SearchArtist extends Observer {
     // children
     let children = [];
     let el = this._appState.isAuth
-      ? searchArtistInput()
+      ? searchArtistInput((artistName) =>
+          this._appState.searchAndAddArtist(artistName)
+        )
       : signOnSpotifyButtonEl(() => this._appState.signOnSpotify());
     children.push(el);
 

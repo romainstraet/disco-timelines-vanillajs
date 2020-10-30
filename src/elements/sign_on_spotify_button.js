@@ -19,8 +19,6 @@ export function signOnSpotifyButtonEl(onClick) {
     iconEl,
     "Sign on Spotify to add an artist",
   ]);
-
-  el.addEventListener("click", () => onClick());
-
+  el.onclick = () => onClick();
   return el;
 }
