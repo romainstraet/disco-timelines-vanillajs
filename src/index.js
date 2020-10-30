@@ -32,7 +32,6 @@ let authRes; // Via callback url with params
 if (window.location.hash !== "") {
   authRes = spotifyApi.getHashParamsFromCallbackUrl(window.location.hash);
   appState.addUser(authRes.accessToken, authRes.state);
-  console.log("here");
 }
 
 // RENDER

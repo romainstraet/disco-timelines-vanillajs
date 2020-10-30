@@ -11,7 +11,7 @@ export default class User {
    */
   getAndStoreStateKey() {
     let stateKey = this._generateRandomString(10);
-    localStorage.setItem("stateKey", stateKey);
+    localStorage.setItem("state_key", stateKey);
     return stateKey;
   }
 
@@ -21,7 +21,7 @@ export default class User {
    */
 
   isValidKey(stateKey) {
-    let validKey = localStorage.getItem("stateKey");
+    let validKey = localStorage.getItem("state_key");
     let response = validKey === stateKey ? true : false;
     return response;
   }
