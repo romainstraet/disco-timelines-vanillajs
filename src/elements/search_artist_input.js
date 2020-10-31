@@ -9,12 +9,13 @@ export function searchArtistInput(onClick) {
   let inputSubmit = elFactory("input", {
     attributes: { type: "submit", value: "Add Artist" },
   });
-  inputSubmit.onclick = () => {
+  inputSubmit.onclick = (e) => {
     //@ts-ignore
     onClick(e.target.previousSibling.value);
     //@ts-ignore
     e.target.previousSibling.value = "";
+    e.preventDefault();
   };
 
-  return elFactory("div", {}, [inputText, inputSubmit]);
+  return elFactory("form", {}, [inputText, inputSubmit]);
 }

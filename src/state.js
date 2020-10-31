@@ -54,6 +54,13 @@ export default class ObservableState extends Observable {
   addArtists(artists) {
     this._state.artists.push(...artists);
     this._sortArtistsChronologically();
+    this._state.artists.forEach((artist) => {
+      console.log(
+        artist.name,
+        artist.earliestReleaseYear,
+        artist.latestReleaseYear
+      );
+    });
     this._setEarliestAndLatestReleaseYear();
     this.notifyObservers(this._state);
   }
@@ -61,8 +68,12 @@ export default class ObservableState extends Observable {
   /**
    * @param {string} artistName
    */
-  searchAndAddArtist(artistName) {
-    console.log(artistName);
+  async searchAndAddArtist(artistName) {
+    let artist = await this._spotifyApi.getArtistWithDiscography(
+      artistName,
+      this._user.accessToken
+    );
+    this.addArtists([artist]);
   }
 
   /**
@@ -116,9 +127,11 @@ export default class ObservableState extends Observable {
       return;
     }
     this._state.earliestReleaseYear = this._state.artists[0].earliestReleaseYear;
-    let lastArtistIndex = this.artists.length - 1;
-    this._state.latestReleaseYear = this._state.artists[
-      lastArtistIndex
-    ].latestReleaseYear;
+    this._state.latestReleaseYear = 0;
+    this._state.artists.forEach((artist) => {
+      if (artist.latestReleaseYear > this._state.latestReleaseYear) {
+        this._state.latestReleaseYear = artist.latestReleaseYear;
+      }
+    });
   }
 }

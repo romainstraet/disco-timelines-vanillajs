@@ -51,7 +51,7 @@ export default class Artist {
    */
   _addAlbumAndAvoidDuplication(album) {
     let duplicateIndex = this.discography.findIndex(
-      (v) => v.name == album.name
+      (v) => v.name.toLowerCase() == album.name.toLowerCase()
     );
     if (duplicateIndex == -1) {
       return this.discography.push(album);

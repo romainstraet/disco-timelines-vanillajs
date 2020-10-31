@@ -6,6 +6,8 @@
  * @property {string} redirectUri
  */
 
+import Artist from "../models/artist";
+
 /**
  * @typedef {object} SpotifyParams
  * @property {string} accessToken
@@ -55,5 +57,60 @@ export default class SpotifyApi {
       }
     }
     return hashParams;
+  }
+
+  /**
+   * @param {string} artistName
+   * @param {string} accessToken
+   * @returns {Promise<Artist>}
+   */
+  async getArtistWithDiscography(artistName, accessToken) {
+    let artist = await this._searchArtist(artistName, accessToken);
+    let artistDisco = await this._getDiscography(artist.id, accessToken);
+    artist.addDiscography(artistDisco);
+    return artist;
+  }
+
+  /**
+   * @param {string} artistName
+   * @param {string} accessToken
+   * @returns {Promise<Artist>}
+   */
+  async _searchArtist(artistName, accessToken) {
+    let url = this._config.apiUrl;
+    url += "search?";
+    url += `q=${artistName}`;
+    url += "&type=artist";
+
+    let res = await fetch(url, {
+      method: "GET",
+      headers: new Headers({ Authorization: "Bearer " + accessToken }),
+    });
+
+    let body = await res.json();
+
+    return new Artist(body.artists.items[0]);
+  }
+
+  /**
+   * @param {string} artistId
+   * @param {string} accessToken
+   * @returns {Promise<[]>}
+   */
+  async _getDiscography(artistId, accessToken) {
+    let url = this._config.apiUrl;
+    url += `artists/${artistId}/albums`;
+    url += "?include_groups=album";
+    url += "&country=BE";
+    url += "&limit=50";
+
+    let res = await fetch(url, {
+      method: "GET",
+      headers: new Headers({ Authorization: "Bearer " + accessToken }),
+    });
+
+    let body = await res.json();
+
+    return body.items;
   }
 }
