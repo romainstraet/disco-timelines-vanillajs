@@ -1,0 +1,6 @@
+.*
+!.gitignore
+!.vscode
+node_modules
+/config.js
+firebase.json
