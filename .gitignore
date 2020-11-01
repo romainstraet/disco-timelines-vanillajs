@@ -1,2 +1,11 @@
+# ignore all . files and . folders
+.*
+
+# But not .gitignore (this file)
+!/.gitignore
+
 node_modules
 /config.js
+firebase.json
+TODO.MD
+
