@@ -3,6 +3,7 @@
 
 # But not .gitignore (this file)
 !/.gitignore
+!.vscode
 
 node_modules
 /config.js
