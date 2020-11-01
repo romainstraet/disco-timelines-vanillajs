@@ -1,8 +1,11 @@
-.firebase
-.vscode
-node_modules
+# ignore all . files and . folders
+.*
 
-.firebaserc
+# But not .gitignore (this file)
+!/.gitignore
+
+dist
+node_modules
 config.js
 firebase.json
 TODO.MD
