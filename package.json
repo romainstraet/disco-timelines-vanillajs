@@ -1,11 +1,41 @@
 {
-  "name": "album-timelines-vuejs",
+  "name": "album-timelines-vanillajs",
   "version": "0.0.1",
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "dev": "webpack-dev-server",
+    "test:unit": "jest tests/unit",
+    "test:acceptance": "testcafe chrome tests/acceptance --app \"npm run dev\" --app-init-delay 3000"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.11.5",
+    "@types/jest": "^26.0.15",
+    "babel-jest": "^26.5.2",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^5.0.0",
+    "file-loader": "^6.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.5.2",
+    "sass": "^1.27.0",
+    "sass-loader": "^10.0.3",
+    "style-loader": "^2.0.0",
+    "testcafe": "^1.9.4",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/unit/_helpers/file_mock.js"
+    }
+  }
 }

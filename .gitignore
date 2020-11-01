@@ -1,6 +1,12 @@
+# ignore all . files and . folders
 .*
-!.gitignore
+
+# But not .gitignore (this file)
+!/.gitignore
 !.vscode
+
 node_modules
 /config.js
 firebase.json
+TODO.MD
+
