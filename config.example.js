@@ -18,7 +18,7 @@ export default {
   },
   test: {
     spotify: {
-      redirectUri: "https://localhost:8080",
+      redirectUri: "",
     },
   },
 };

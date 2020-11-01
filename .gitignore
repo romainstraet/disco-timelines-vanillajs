@@ -6,7 +6,7 @@
 
 dist
 node_modules
-config.js
+/config.js
 firebase.json
 TODO.MD
 
