@@ -21,7 +21,9 @@ describe("ALBUM CLASS", () => {
     });
 
     test("The state key is stored locally", async () => {
-      expect(user.getAndStoreStateKey()).toBe(localStorage.getItem("stateKey"));
+      expect(user.getAndStoreStateKey()).toBe(
+        localStorage.getItem("state_key")
+      );
     });
 
     test("The state key can be verified and returns true if matches", async () => {

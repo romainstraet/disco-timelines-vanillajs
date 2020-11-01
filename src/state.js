@@ -54,13 +54,6 @@ export default class ObservableState extends Observable {
   addArtists(artists) {
     this._state.artists.push(...artists);
     this._sortArtistsChronologically();
-    this._state.artists.forEach((artist) => {
-      console.log(
-        artist.name,
-        artist.earliestReleaseYear,
-        artist.latestReleaseYear
-      );
-    });
     this._setEarliestAndLatestReleaseYear();
     this.notifyObservers(this._state);
   }

@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "webpack --mode production",
+    "deploy": "",
     "dev": "webpack-dev-server",
     "test:unit": "jest tests/unit",
     "test:acceptance": "testcafe chrome tests/acceptance --app \"npm run dev\" --app-init-delay 3000"
