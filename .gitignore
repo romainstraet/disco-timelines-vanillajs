@@ -1,3 +1,9 @@
+.firebase
+.vscode
 node_modules
-src/config.js
+
+.firebaserc
+config.js
+firebase.json
 TODO.MD
+

@@ -6,7 +6,7 @@ import { timelineAxisYearEl } from "../elements/timeline_axis_year";
 import {
   kTimelineAxisYearWidth,
   kTimelineFirstColWidth,
-} from "../scss/constants";
+} from "../assets/constants";
 
 export default class TimelineAxis extends Observer {
   /**

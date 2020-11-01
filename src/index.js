@@ -3,7 +3,7 @@ import TimelineAxis from "./components/timelines_axis";
 import Artists from "./components/artists";
 import SpotifyApi from "./services/spotify_api";
 import Config from "./config";
-import "./scss/style.scss";
+import "./assets/style.scss";
 import { initPrepopulatedData } from "./data";
 import SearchArtist from "./components/search_artist";
 

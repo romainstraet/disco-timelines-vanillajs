@@ -5,7 +5,7 @@ import { artistEl } from "../elements/artist";
 import {
   kTimelineFirstColWidth,
   kTimelineAxisYearWidth,
-} from "../scss/constants";
+} from "../assets/constants";
 import { artistDefaultEl } from "../elements/artist-default";
 
 export default class Artists extends Observer {

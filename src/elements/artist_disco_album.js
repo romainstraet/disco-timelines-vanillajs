@@ -1,5 +1,5 @@
 import Album from "../models/album";
-import { kTimelineAxisYearWidth } from "../scss/constants";
+import { kTimelineAxisYearWidth } from "../assets/constants";
 import { elFactory } from "./@element_factory";
 
 /**
