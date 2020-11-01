@@ -3,7 +3,7 @@
 module.exports = (env) => {
   return {
     devServer: {
-      contentBase: "./dist/",
+      contentBase: "./public/",
     },
     devtool: "inline-source-map",
     entry: "./src/index.js",
