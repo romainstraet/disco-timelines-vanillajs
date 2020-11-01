@@ -1,0 +1,94 @@
+@use 'const';
+
+#search-artist {
+  display: flex;
+  background: white;
+  padding: const.$margin-base;
+}
+
+form {
+  position: sticky;
+  left: const.$margin-base;
+}
+
+input[type="text"] {
+  margin: 0px;
+  width: const.$timeline-first-col-width;
+  padding: 15px;
+  border: 4px solid #1ed760;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-sizing: border-box;
+  outline: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  &:focus {
+    transition: all 0.3s ease-in-out;
+    box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  }
+}
+input[type="submit"] {
+  margin: 0px;
+  padding: 15px;
+  border: 4px solid #1ed760;
+  background-color: #1ed760;
+  color: white;
+  border-left: 0px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-sizing: border-box;
+  outline: none;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  &:hover {
+    //transition: all 0.3s ease-in-out;
+    background-color: #1db954;
+  }
+  &:active {
+    //transition: all 0.3s ease-in-out;
+    background-color: #1ed760;
+    box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0);
+  }
+}
+
+.button-sign-on-spotify {
+  position: sticky;
+  left: const.$margin-base;
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border: 0px solid #1ed760;
+  background: rgb(24, 166, 74);
+  background: linear-gradient(
+    47deg,
+    rgb(25, 181, 80) 0%,
+    rgba(30, 215, 96, 1) 100%
+  );
+
+  border-radius: 20px;
+  box-sizing: border-box;
+  outline: none;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  .spotify-icon {
+    margin-right: 15px;
+    height: 40px;
+    width: 40px;
+  }
+
+  &:hover {
+    //transition: all 0.3s ease-in-out;
+    background: #1db954;
+  }
+  &:active {
+    //transition: all 0.3s ease-in-out;
+    background: #1ed760;
+    box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0);
+  }
+}
