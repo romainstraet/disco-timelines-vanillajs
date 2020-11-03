@@ -1,0 +1,56 @@
+mark {
+  background-color: #6aff8f60;
+  display: inline-block;
+  line-height: 0em;
+  padding-bottom: 0.5em;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  color: #444;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+a {
+  color: #1ed760;
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    color: #0e9e40;
+    text-decoration: none;
+  }
+}
+
+.close-button {
+  color: #1ed760;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 7px 15px;
+  font-size: 2rem;
+  font-weight: bold;
+  &:hover,
+  &:focus {
+    color: #0e9e40;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+.branded-resources {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+  p {
+    font-size: 1.1rem;
+    margin: 0 !important;
+  }
+  img {
+    margin-right: 15px;
+    height: 20px;
+    width: 20px;
+  }
+}
