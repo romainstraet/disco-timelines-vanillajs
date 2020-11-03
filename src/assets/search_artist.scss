@@ -1,48 +1,52 @@
 @use 'const';
 
 #search-artist {
-  display: flex;
   background: white;
   padding: const.$margin-base;
 }
 
 form {
-  position: sticky;
-  left: const.$margin-base;
 }
 
 input[type="text"] {
+  position: sticky;
+  left: const.$margin-base;
+  padding: 15px;
   margin: 0px;
   width: const.$timeline-first-col-width;
-  padding: 15px;
+  box-sizing: border-box;
   border: 4px solid #1ed760;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  box-sizing: border-box;
   outline: none;
   font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
+  color: #444;
+
   &:focus {
     transition: all 0.3s ease-in-out;
     box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
   }
 }
 input[type="submit"] {
+  position: sticky;
+  left: const.$margin-base + const.$timeline-first-col-width;
   margin: 0px;
   padding: 15px;
+  box-sizing: border-box;
   border: 4px solid #1ed760;
-  background-color: #1ed760;
-  color: white;
   border-left: 0px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  box-sizing: border-box;
+  box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
   outline: none;
+  background-color: #1ed760;
+  color: white;
   font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
-  box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
+
   &:hover {
     //transition: all 0.3s ease-in-out;
     background-color: #1db954;
@@ -54,41 +58,68 @@ input[type="submit"] {
   }
 }
 
+@media (max-width: const.$small-breakpoint) {
+  .button-sign-on-spotify {
+    width: calc(100vw - 40px);
+    justify-content: center;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  input[type="text"] {
+    padding: 10px;
+    width: calc(100vw - 40px);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 0px;
+    text-align: center;
+    font-size: 1.3rem;
+  }
+  input[type="submit"] {
+    left: const.$margin-base;
+    padding: 10px;
+    width: calc(100vw - 40px);
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-left: 4px solid #1ed760;
+    border-top: 0px;
+    font-size: 1.3rem;
+  }
+}
+
 .button-sign-on-spotify {
   position: sticky;
   left: const.$margin-base;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   padding: 15px 20px;
   border: 0px solid #1ed760;
-  background: rgb(24, 166, 74);
+  border-radius: 20px;
+  outline: none;
   background: linear-gradient(
     47deg,
     rgb(25, 181, 80) 0%,
     rgba(30, 215, 96, 1) 100%
   );
-
-  border-radius: 20px;
-  box-sizing: border-box;
-  outline: none;
+  box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
   color: white;
   font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
-  box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
+  &:hover {
+    background: #1db954;
+  }
+  &:active {
+    background: #1ed760;
+    box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0);
+  }
   .spotify-icon {
     margin-right: 15px;
     height: 40px;
     width: 40px;
-  }
-
-  &:hover {
-    //transition: all 0.3s ease-in-out;
-    background: #1db954;
-  }
-  &:active {
-    //transition: all 0.3s ease-in-out;
-    background: #1ed760;
-    box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0);
+    filter: invert(1);
   }
 }

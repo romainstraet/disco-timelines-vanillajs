@@ -1,6 +1,8 @@
 import { elFactory } from "./@element_factory";
 //@ts-ignore
 import spotifyIcon from "../assets/spotify_icon.png";
+//@ts-ignore
+import spotifyIconSVG from "../assets/spotify.svg";
 
 /**
  * @param {function} onClick
@@ -12,7 +14,7 @@ export function signOnSpotifyButtonEl(onClick) {
   };
 
   let iconEl = elFactory("img", {
-    attributes: { class: "spotify-icon", src: spotifyIcon },
+    attributes: { class: "spotify-icon", src: spotifyIconSVG },
   });
 
   let el = elFactory("button", { attributes }, [

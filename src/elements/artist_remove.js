@@ -13,5 +13,5 @@ export function artistRemoveButton(artistId) {
     "data-artist-id": artistId,
   };
 
-  return elFactory("button", { attributes }, ["X"]);
+  return elFactory("div", { attributes }, ["×"]);
 }
