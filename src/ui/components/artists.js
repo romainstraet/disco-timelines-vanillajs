@@ -6,7 +6,8 @@ import {
   kTimelineFirstColWidth,
   kTimelineAxisYearWidth,
 } from "../../assets/constants";
-import { artistDefaultEl } from "../elements/artist-default";
+import { artistDefaultEl } from "../elements/artist_default";
+import { artistEvent } from "../../base/events";
 
 export default class Artists extends Observer {
   /**
@@ -18,10 +19,12 @@ export default class Artists extends Observer {
   }
 
   /**
-   *
+   * @param {string} event
    */
-  update() {
-    this.render();
+  update(event) {
+    if (event == artistEvent) {
+      this.render();
+    }
   }
 
   /**

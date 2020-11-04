@@ -71,18 +71,18 @@ describe("SEARCH ARTIST OBSERVER CLASS", () => {
       let button = el.querySelectorAll("button");
       expect(button[0].onclick).not.toBeUndefined();
     });
-  });
 
-  describe("On Update Method", () => {
-    test("When update method is called, HTMLElement is re-renderd", async () => {
-      // let artists = new Artists(appState);
-      // artists.render();
-      // appState.subscribe(artists);
-      // appState.addArtists(_artists); // Should notify observers with their update method
-      // let el = document.getElementById("timeline-artists");
-      // appState.removeArtist(_artists[0].id);
-      // let updatedEl = document.getElementById("timeline-artists");
-      // expect(updatedEl.children.length).toBe(el.children.length - 1);
+    describe("On Update Method", () => {
+      test("When update method is called, HTMLElement is re-renderd", async () => {
+        let searchArtist = new SearchArtist(appState);
+        searchArtist.render();
+        let el = document.getElementById("search-artist");
+        appState.subscribe(searchArtist);
+        localStorage.setItem("state_key", "123");
+        appState.addUser("whatever", "123"); // Should notify observers with their update method
+        let upatedEl = document.getElementById("search-artist");
+        expect(el).not.toBe(upatedEl);
+      });
     });
   });
 });

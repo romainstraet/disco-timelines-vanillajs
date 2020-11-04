@@ -18,7 +18,7 @@ export function artistEl(artist, startYear, onRemove) {
   };
 
   let removeButtonChild = artistRemoveButton(artist.id);
-  removeButtonChild.addEventListener("click", () => onRemove());
+  removeButtonChild.onclick = () => onRemove();
 
   let firstColChild = artistFirstColEl(artist);
   firstColChild.appendChild(removeButtonChild);

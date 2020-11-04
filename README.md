@@ -1,4 +1,4 @@
-## 💿 Discography Timelines
+# 💿 Discography Timelines
 
 [Live version here](https://disco-timelines.web.app/)
 
@@ -10,18 +10,35 @@ The app allows users to add the discography of different artists of
 their choice by consuming the [Spotify Web API](https://developer.spotify.com/documentation/web-api/).
 
 From a technical point of view, the goal was to build a front-end only
-website based on **TDD** and on a **frameworkless** philosophy. This project has therefore been built with HTML, CSS and **Vanilla Javascript** only.
+website based on **TDD** and on a **frameworkless** philosophy. This project has therefore been built with HTML, CSS and **Vanilla Javascript** only (no vue/react, no bootstrap, or whatever).
 
-### To Do
+## To Do
 
 - [x] Make design responsive and enhance some styling (v0.2)
-- [ ] Fetch more than 50 albums when appropriate (e.g. Bob Dylan)
-    - *Spotify returns max 50 album objects on each request. Currently, the app only fetches those 50 albums. Hence, If an artist has released more than 50 albums, the artist's timeline is incomplete.*
-- [ ] Add a "did you mean...?" functionnality
-    - *When searching for an artist, the app only consider the first result of the array of artists returns by the Spotify API. However, there are some cases where the first result is not the actual searched artist. Hence, the app could show the other results to let the user verify its research.*
-- [ ] Handle errors and mis-use
-    - *Currently, the app does not handle error at all (e.g. network, authentification, artist not found, etc.), nor mis-use (e.g. adding same artist multiple times)*
+- [x] Fetch more than 50 albums when appropriate (e.g. Bob Dylan)
+  - _Spotify returns max 50 album objects on each request. Hence, If an artist has released more than 50 albums, the artist's timeline is incomplete._
+- [x] Handle errors and mis-use
+  - _Currently, the app does not handle error at all (e.g. network, authentification, artist not found, etc.), nor mis-use (e.g. adding same artist multiple times)_
 - [ ] Increase performance
-    - *Until now, the focus has been put on make the app works without any performance consideration (e.g. no focus on lazy-loading, page events, etc.)*
+  - _Until now, the focus has been put on make the app works without any performance consideration (e.g. no focus on lazy-loading, page events, etc.)_
+    - [x] Using Loading=Lazy attribute on img
+    - [x] Minify javascript file with
+    - [x] Re-render only what has to be re-rendered
+    - [ ] Change the initial data (i.e. choose an artist with less releases than the Beatles and the Rolling Stones to minimize the size of the data)
 - [ ] Increase test coverage and acceptance tests
-    - *Test coverage is already high since the app has been based on a TDD approach. It could however be improved.*
+  - _Test coverage is already high since the app has been based on a TDD approach. It could however be improved since latest development (after v0.2) has been comited without much tests (this is a quite useless personal project and I got bored)._
+- [ ] Add a "did you mean...?" functionnality
+  - _When searching for an artist, the app only consider the first result of the array of artists returns by the Spotify API. However, there are some cases where the first result is not the actual searched artist. Hence, the app could show the other results to let the user verify its research._
+
+## Things I've learned (so far)
+
+- It's not (that) complicated to build a frameworkless app.
+- JSDOC is a good compromise between pure javascript and typescript.
+- The Observer pattern.
+- A bit of sass, babel and webpack.
+- [This github workflow](https://nvie.com/posts/a-successful-git-branching-model/)
+- Modeling the data is big part of the job (cleaning names, avoid duplicates, etc.).
+- Create abstract classes in pure javascript.
+- [This simple but useful pattern](https://kyleshevlin.com/how-to-write-your-own-javascript-dom-element-factory).
+- TDD forces you to build testable app (_de facto_...).
+- I discover the _loading=lazy_ attribute for img (more info [here](https://web.dev/browser-level-image-lazy-loading/)). Since this attribute is not yet supported by all browsers, I would have tried [this](https://dev.to/ekafyi/lazy-loading-images-with-vanilla-javascript-2fbj) instead if it wasn't for a personal project.

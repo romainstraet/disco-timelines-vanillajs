@@ -1,3 +1,6 @@
+import Artist from "../models/artist";
+import { AppError, AuthError } from "../base/errors";
+
 /**
  * @typedef {object} Config
  * @property {string} authUrl
@@ -5,8 +8,6 @@
  * @property {string} clientId
  * @property {string} redirectUri
  */
-
-import Artist from "../models/artist";
 
 /**
  * @typedef {object} SpotifyParams
@@ -74,7 +75,7 @@ export default class SpotifyApi {
   /**
    * @param {string} artistName
    * @param {string} accessToken
-   * @returns {Promise<Artist>}
+   * @returns {Promise<object>}
    */
   async _searchArtist(artistName, accessToken) {
     let url = this._config.apiUrl;
@@ -89,13 +90,23 @@ export default class SpotifyApi {
 
     let body = await res.json();
 
+    if (body.error) {
+      if (body.error.status == 401) {
+        throw new AuthError(
+          "Your access token has expired. Please sign again on Spotify."
+        );
+      }
+    }
+    if (body.artists.total == 0) {
+      throw new AppError("Artist not found. Please Retry.");
+    }
     return new Artist(body.artists.items[0]);
   }
 
   /**
    * @param {string} artistId
    * @param {string} accessToken
-   * @returns {Promise<[]>}
+   * @returns {Promise<any[]>}
    */
   async _getDiscography(artistId, accessToken) {
     let url = this._config.apiUrl;
@@ -104,13 +115,32 @@ export default class SpotifyApi {
     url += "&country=BE";
     url += "&limit=50";
 
+    let res = await this._fetchAlbums(url, accessToken);
+
+    let artistDisco = [];
+    artistDisco.push(...res.items);
+
+    let round = Math.ceil(res.total / 50);
+
+    for (let i = 1; i < round; i++) {
+      let url2 = url + "&offset=" + i * 50;
+      let res2 = await this._fetchAlbums(url2, accessToken);
+      artistDisco.push(...res2.items);
+    }
+    return artistDisco;
+  }
+
+  /**
+   * @param {string} url
+   * @param {string} accessToken
+   * @returns {Promise<Object>}
+   */
+  async _fetchAlbums(url, accessToken) {
     let res = await fetch(url, {
       method: "GET",
       headers: new Headers({ Authorization: "Bearer " + accessToken }),
     });
-
     let body = await res.json();
-
-    return body.items;
+    return body;
   }
 }

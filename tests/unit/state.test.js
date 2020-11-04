@@ -17,9 +17,11 @@ let _albums = albums();
 _artists[0].addDiscography(_albums[0]);
 _artists[1].addDiscography(_albums[1]);
 
-let spotifyApi = new SpotifyApi(Config.Spotify);
-
 describe("OBSERVABLE STATE CLASS", () => {
+  let spotifyApi;
+  beforeEach(() => {
+    spotifyApi = new SpotifyApi(Config.Spotify);
+  });
   test("Should be an implementation of the Observable base class", async () => {
     let state = new ObservableState(spotifyApi);
     expect(state instanceof Observable).toBeTruthy();
@@ -84,10 +86,14 @@ describe("OBSERVABLE STATE CLASS", () => {
 
       test("Removing artist resets earliest/latest release year", async () => {
         let state = new ObservableState(spotifyApi);
-        state.addArtists(_artists);
-        state.removeArtist(_artists[0].id);
+        state.addArtists(_artists); // Two artists
+        state.removeArtist(_artists[0].id); // One left
         expect(state.earliestReleaseYear).toBe(1964);
         expect(state.latestReleaseYear).toBe(1969); // changed
+        state.removeArtist(_artists[0].id); // Zero left
+        let currentYear = new Date(Date.now()).getFullYear();
+        expect(state.earliestReleaseYear).toBe(currentYear - 10);
+        expect(state.latestReleaseYear).toBe(currentYear - 1);
       });
 
       test("Removing artists notifies observers upon state change", async () => {
@@ -161,6 +167,23 @@ describe("OBSERVABLE STATE CLASS", () => {
         let stateKeyMocked = new User().getAndStoreStateKey();
         state.addUser(accessToken, stateKeyMocked);
         expect(state.isAuth).toBe(false);
+      });
+    });
+
+    describe("Search and Add Artist method", () => {
+      beforeEach(() => mockWindowLocation());
+      afterEach(() => resetWindowlocation());
+
+      test("Should sign user in if access token provided and valid state", async () => {
+        let state = new ObservableState(spotifyApi);
+        spotifyApi.getArtistWithDiscography = async () => _artists[0]; // mock
+        let spyGetArtistApi = jest.spyOn(
+          spotifyApi,
+          "getArtistWithDiscography"
+        );
+        await state.searchAndAddArtist("whatever");
+        expect(spyGetArtistApi).toHaveBeenCalled();
+        expect(state.artists[0].name).toBe(_artists[0].name);
       });
     });
   });
