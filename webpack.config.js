@@ -1,4 +1,5 @@
 "use strict";
+const path = require("path");
 
 module.exports = (env) => {
   return {
@@ -8,6 +9,7 @@ module.exports = (env) => {
     devtool: "inline-source-map",
     entry: "./src/index.js",
     output: {
+      path: path.resolve(__dirname, "public"),
       filename: "main.js",
     },
     module: {

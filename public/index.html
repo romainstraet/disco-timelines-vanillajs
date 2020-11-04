@@ -2,24 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Disco Timelines</title>
-    <script defer src="main.js"></script>
-    <script defer src="modal.js"></script>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <title>Disco-Timelines</title>
   </head>
   <body>
     <!-- App   -->
     <div id="app">
+      <nav>
+        <h1>
+          💿 Discography Timelines
+          <a href="#" id="button-open-modal-info" class="button-modal-info"
+            >more info</a
+          >
+        </h1>
+      </nav>
+      <div id="search-artist"></div>
+
       <div id="sticky-top-container">
-        <nav>
-          <h1>
-            💿 Discography Timelines
-            <a href="#" id="button-open-modal-info" class="button-modal-info"
-              >more info</a
-            >
-          </h1>
-        </nav>
-        <div id="search-artist"></div>
         <div id="timeline-axis"></div>
       </div>
       <div id="timeline-artists"></div>
@@ -99,5 +101,7 @@
         </div>
       </div>
     </div>
+    <script src="main.js"></script>
+    <script src="modal.js"></script>
   </body>
 </html>
