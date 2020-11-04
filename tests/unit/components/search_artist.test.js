@@ -68,8 +68,8 @@ describe("SEARCH ARTIST OBSERVER CLASS", () => {
       appState._user.accessToken = "whatever";
       new SearchArtist(appState).render();
       let el = document.getElementById("search-artist");
-      let button = el.querySelectorAll("input");
-      expect(button[1].onclick).not.toBeUndefined();
+      let button = el.querySelectorAll("button");
+      expect(button[0].onclick).not.toBeUndefined();
     });
   });
 

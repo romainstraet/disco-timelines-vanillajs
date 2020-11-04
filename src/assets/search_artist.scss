@@ -29,7 +29,7 @@ input[type="text"] {
     box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);
   }
 }
-input[type="submit"] {
+button[type="submit"] {
   position: sticky;
   left: const.$margin-base + const.$timeline-first-col-width;
   margin: 0px;
@@ -73,10 +73,11 @@ input[type="submit"] {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
     text-align: center;
     font-size: 1.3rem;
   }
-  input[type="submit"] {
+  button[type="submit"] {
     left: const.$margin-base;
     padding: 10px;
     width: calc(100vw - 40px);

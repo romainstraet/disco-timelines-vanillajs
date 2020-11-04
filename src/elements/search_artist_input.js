@@ -6,9 +6,13 @@ import { elFactory } from "./@element_factory";
  */
 export function searchArtistInput(onClick) {
   let inputText = elFactory("input", { attributes: { type: "text" } });
-  let inputSubmit = elFactory("input", {
-    attributes: { type: "submit", value: "Add Artist" },
-  });
+  let inputSubmit = elFactory(
+    "button",
+    {
+      attributes: { type: "submit" },
+    },
+    ["Add Artist"]
+  );
   inputSubmit.onclick = (e) => {
     //@ts-ignore
     onClick(e.target.previousSibling.value);
