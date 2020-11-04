@@ -74,7 +74,7 @@ export default class SpotifyApi {
   /**
    * @param {string} artistName
    * @param {string} accessToken
-   * @returns {Promise<Artist>}
+   * @returns {Promise<object>}
    */
   async _searchArtist(artistName, accessToken) {
     let url = this._config.apiUrl;
@@ -95,7 +95,7 @@ export default class SpotifyApi {
   /**
    * @param {string} artistId
    * @param {string} accessToken
-   * @returns {Promise<[]>}
+   * @returns {Promise<any[]>}
    */
   async _getDiscography(artistId, accessToken) {
     let url = this._config.apiUrl;
@@ -104,13 +104,33 @@ export default class SpotifyApi {
     url += "&country=BE";
     url += "&limit=50";
 
+    let res = await this._fetchAlbums(url, accessToken);
+
+    let artistDisco = [];
+    artistDisco.push(...res.items);
+
+    let round = Math.ceil(res.total / 50);
+
+    for (let i = 1; i < round; i++) {
+      console.log(i, i * 50, round);
+      let url2 = url + "&offset=" + i * 50;
+      let res2 = await this._fetchAlbums(url2, accessToken);
+      artistDisco.push(...res2.items);
+    }
+    return artistDisco;
+  }
+
+  /**
+   * @param {string} url
+   * @param {string} accessToken
+   * @returns {Promise<Object>}
+   */
+  async _fetchAlbums(url, accessToken) {
     let res = await fetch(url, {
       method: "GET",
       headers: new Headers({ Authorization: "Bearer " + accessToken }),
     });
-
     let body = await res.json();
-
-    return body.items;
+    return body;
   }
 }
