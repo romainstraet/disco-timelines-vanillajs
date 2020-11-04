@@ -1,5 +1,7 @@
 ## 💿 Discography Timelines
 
+[Live version here](https://disco-timelines.web.app/)
+
 **Discography Timelines** is a personal project aiming to
 present every album released by an artist on a timeline (based on the
 release date of the album).
