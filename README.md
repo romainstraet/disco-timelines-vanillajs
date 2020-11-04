@@ -17,16 +17,18 @@ website based on **TDD** and on a **frameworkless** philosophy. This project has
 - [x] Make design responsive and enhance some styling (v0.2)
 - [x] Fetch more than 50 albums when appropriate (e.g. Bob Dylan)
   - _Spotify returns max 50 album objects on each request. Hence, If an artist has released more than 50 albums, the artist's timeline is incomplete._
-- [ ] Add a "did you mean...?" functionnality
-  - _When searching for an artist, the app only consider the first result of the array of artists returns by the Spotify API. However, there are some cases where the first result is not the actual searched artist. Hence, the app could show the other results to let the user verify its research._
 - [x] Handle errors and mis-use
   - _Currently, the app does not handle error at all (e.g. network, authentification, artist not found, etc.), nor mis-use (e.g. adding same artist multiple times)_
 - [ ] Increase performance
   - _Until now, the focus has been put on make the app works without any performance consideration (e.g. no focus on lazy-loading, page events, etc.)_
     - [x] Using Loading=Lazy attribute on img
     - [x] Minify javascript file with
+    - [x] Re-render only what has to be re-rendered
+    - [ ] Change the initial data (i.e. choose an artist with less releases than the Beatles and the Rolling Stones to minimize the size of the data)
 - [ ] Increase test coverage and acceptance tests
-  - _Test coverage is already high since the app has been based on a TDD approach. It could however be improved._
+  - _Test coverage is already high since the app has been based on a TDD approach. It could however be improved since latest development (after v0.2) has been comited without much tests (this is a quite useless personal project and I got bored)._
+- [ ] Add a "did you mean...?" functionnality
+  - _When searching for an artist, the app only consider the first result of the array of artists returns by the Spotify API. However, there are some cases where the first result is not the actual searched artist. Hence, the app could show the other results to let the user verify its research._
 
 ## Things I've learned (so far)
 
