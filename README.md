@@ -23,6 +23,8 @@ website based on **TDD** and on a **frameworkless** philosophy. This project has
   - _Currently, the app does not handle error at all (e.g. network, authentification, artist not found, etc.), nor mis-use (e.g. adding same artist multiple times)_
 - [ ] Increase performance
   - _Until now, the focus has been put on make the app works without any performance consideration (e.g. no focus on lazy-loading, page events, etc.)_
+    - [x] Using Loading=Lazy attribute on img
+    - [x] Minify javascript file with
 - [ ] Increase test coverage and acceptance tests
   - _Test coverage is already high since the app has been based on a TDD approach. It could however be improved._
 
@@ -37,3 +39,4 @@ website based on **TDD** and on a **frameworkless** philosophy. This project has
 - Create abstract classes in pure javascript.
 - [This simple but useful pattern](https://kyleshevlin.com/how-to-write-your-own-javascript-dom-element-factory).
 - TDD forces you to build testable app (_de facto_...).
+- I discover the _loading=lazy_ attribute for img (more info [here](https://web.dev/browser-level-image-lazy-loading/)). Since this attribute is not yet supported by all browsers, I would have tried [this](https://dev.to/ekafyi/lazy-loading-images-with-vanilla-javascript-2fbj) instead if it wasn't for a personal project.
