@@ -1,5 +1,5 @@
-import Artist from "../models/artist";
-import { elFactory } from "./@element_factory";
+import Artist from "../../models/artist";
+import { elFactory } from "./_element_factory";
 
 /**
  * @param {Artist} artist

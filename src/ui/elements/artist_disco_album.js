@@ -1,6 +1,6 @@
-import Album from "../models/album";
-import { kTimelineAxisYearWidth } from "../assets/constants";
-import { elFactory } from "./@element_factory";
+import Album from "../../models/album";
+import { kTimelineAxisYearWidth } from "../../assets/constants";
+import { elFactory } from "./_element_factory";
 
 /**
  * @param {Album} album

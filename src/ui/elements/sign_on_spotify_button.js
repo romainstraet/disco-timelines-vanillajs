@@ -1,8 +1,6 @@
-import { elFactory } from "./@element_factory";
+import { elFactory } from "./_element_factory";
 //@ts-ignore
-import spotifyIcon from "../assets/spotify_icon.png";
-//@ts-ignore
-import spotifyIconSVG from "../assets/spotify.svg";
+import spotifyIconSVG from "../../assets/images/spotify.svg";
 
 /**
  * @param {function} onClick

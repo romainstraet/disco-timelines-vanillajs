@@ -1,5 +1,5 @@
-import Album from "../models/album";
-import { elFactory } from "./@element_factory";
+import Album from "../../models/album";
+import { elFactory } from "./_element_factory";
 import { artistDiscoAlbumEl } from "./artist_disco_album";
 
 /**

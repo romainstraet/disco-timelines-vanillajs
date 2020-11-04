@@ -1,11 +1,11 @@
-import ObservableState from "../state";
-import Observer from "../base/observer";
-import { elFactory } from "../elements/@element_factory";
+import ObservableState from "../../state";
+import Observer from "../../base/observer";
+import { elFactory } from "../elements/_element_factory";
 import { artistEl } from "../elements/artist";
 import {
   kTimelineFirstColWidth,
   kTimelineAxisYearWidth,
-} from "../assets/constants";
+} from "../../assets/constants";
 import { artistDefaultEl } from "../elements/artist-default";
 
 export default class Artists extends Observer {

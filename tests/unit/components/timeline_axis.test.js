@@ -1,6 +1,6 @@
 import ObservableState from "../../../src/state";
 import Observer from "../../../src/base/observer";
-import TimelineAxis from "../../../src/components/timelines_axis";
+import TimelineAxis from "../../../src/ui/components/timelines_axis";
 import { artists, albums } from "../_helpers/mock_data";
 import SpotifyApi from "../../../src/services/spotify_api";
 import Config from "../../../src/config";

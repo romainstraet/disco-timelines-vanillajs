@@ -1,11 +1,12 @@
 import ObservableState from "./state";
-import TimelineAxis from "./components/timelines_axis";
-import Artists from "./components/artists";
+import TimelineAxis from "./ui/components/timelines_axis";
+import Artists from "./ui/components/artists";
+import SearchArtist from "./ui/components/search_artist";
 import SpotifyApi from "./services/spotify_api";
 import Config from "./config";
 import "./assets/style.scss";
 import { initPrepopulatedData } from "./data";
-import SearchArtist from "./components/search_artist";
+
 
 // PRE-POPULATE DATA
 let artistsArray = initPrepopulatedData();
