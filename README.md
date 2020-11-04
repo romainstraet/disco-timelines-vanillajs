@@ -18,8 +18,7 @@ website based on **TDD** and on a **frameworkless** philosophy. This project has
 - [x] Fetch more than 50 albums when appropriate (e.g. Bob Dylan)
 - [ ] Add a "did you mean...?" functionnality
   - _When searching for an artist, the app only consider the first result of the array of artists returns by the Spotify API. However, there are some cases where the first result is not the actual searched artist. Hence, the app could show the other results to let the user verify its research._
-- [ ] Handle errors and mis-use
-  - _Currently, the app does not handle error at all (e.g. network, authentification, artist not found, etc.), nor mis-use (e.g. adding same artist multiple times)_
+- [x] Handle some errors and mis-use
 - [ ] Increase performance
   - _Until now, the focus has been put on make the app works without any performance consideration (e.g. no focus on lazy-loading, page events, etc.)_
 - [ ] Increase test coverage and acceptance tests

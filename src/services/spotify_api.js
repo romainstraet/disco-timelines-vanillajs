@@ -1,3 +1,6 @@
+import Artist from "../models/artist";
+import { AppError, AuthError } from "../base/errors";
+
 /**
  * @typedef {object} Config
  * @property {string} authUrl
@@ -5,8 +8,6 @@
  * @property {string} clientId
  * @property {string} redirectUri
  */
-
-import Artist from "../models/artist";
 
 /**
  * @typedef {object} SpotifyParams
@@ -88,8 +89,17 @@ export default class SpotifyApi {
     });
 
     let body = await res.json();
-    console.log(body.artists.items);
 
+    if (body.error) {
+      if (body.error.status == 401) {
+        throw new AuthError(
+          "Your access token has expired. Please sign again on Spotify."
+        );
+      }
+    }
+    if (body.artists.total == 0) {
+      throw new AppError("Artist not found. Please Retry.");
+    }
     return new Artist(body.artists.items[0]);
   }
 

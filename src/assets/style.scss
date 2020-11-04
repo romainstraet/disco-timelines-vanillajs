@@ -3,6 +3,7 @@
 @use 'css/nav';
 @use 'css/modal';
 @use 'css/const';
+@use 'css/error_message';
 
 body,
 html {
@@ -14,10 +15,4 @@ html {
 
 #app {
   width: fit-content;
-}
-
-#sticky-top-container {
-  position: sticky;
-  top: 0px;
-  z-index: 9999;
 }

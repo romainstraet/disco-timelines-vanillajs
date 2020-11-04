@@ -5,9 +5,6 @@
   padding: const.$margin-base;
 }
 
-form {
-}
-
 input[type="text"] {
   position: sticky;
   left: const.$margin-base;
@@ -23,7 +20,10 @@ input[type="text"] {
   font-size: 1.5rem;
   font-weight: 600;
   color: #444;
-
+  &::placeholder {
+    font-weight: 300;
+    color: #ccc;
+  }
   &:focus {
     transition: all 0.3s ease-in-out;
     box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.15);

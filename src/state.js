@@ -1,3 +1,4 @@
+import { AppError } from "./base/errors";
 import Observable from "./base/observable";
 import Artist from "./models/artist";
 import User from "./models/user";
@@ -30,6 +31,8 @@ export default class ObservableState extends Observable {
     this._state = state;
     /** @private */
     this._user = new User();
+    /** @private */
+    this._errorMessage = "";
   }
 
   get artists() {
@@ -48,6 +51,10 @@ export default class ObservableState extends Observable {
     return this._user.accessToken != "" ? true : false;
   }
 
+  get errorMessage() {
+    return this._errorMessage;
+  }
+
   /**
    * @param {Artist[]} artists
    */
@@ -62,11 +69,27 @@ export default class ObservableState extends Observable {
    * @param {string} artistName
    */
   async searchAndAddArtist(artistName) {
-    let artist = await this._spotifyApi.getArtistWithDiscography(
-      artistName,
-      this._user.accessToken
-    );
-    this.addArtists([artist]);
+    try {
+      this._setErrorMessage("");
+      this._checkIfArtistAlreadyInStore(artistName);
+      let artist = await this._spotifyApi.getArtistWithDiscography(
+        artistName.trim(),
+        this._user.accessToken
+      );
+      this.addArtists([artist]);
+    } catch (e) {
+      let message;
+      if (e.name == "AppError") {
+        message = e.message;
+      } else if (e.name == "AuthError") {
+        message = e.message;
+        this._user = new User();
+        window.location.hash = "";
+      } else {
+        message = "Something went wrong. Please retry.";
+      }
+      this._setErrorMessage(message);
+    }
   }
 
   /**
@@ -126,5 +149,27 @@ export default class ObservableState extends Observable {
         this._state.latestReleaseYear = artist.latestReleaseYear;
       }
     });
+  }
+
+  /**
+   * @private
+   * @param {string} artistName
+   */
+  _checkIfArtistAlreadyInStore(artistName) {
+    let existingArtist = this.artists.find(
+      (v) => v.name.toLowerCase() == artistName.toLowerCase().trim()
+    );
+    if (existingArtist !== undefined) {
+      throw new AppError("Artist is already included in the timelines.");
+    }
+  }
+
+  /**
+   * @private
+   * @param {string} message
+   */
+  _setErrorMessage(message) {
+    this._errorMessage = message;
+    this.notifyObservers(this._state);
   }
 }
