@@ -3,6 +3,7 @@ import Observer from "../../base/observer";
 import { elFactory } from "../elements/_element_factory";
 import { signOnSpotifyButtonEl } from "../elements/sign_on_spotify_button";
 import { searchArtistInput } from "../elements/search_artist_input";
+import { userEvent } from "../../base/events";
 
 export default class SearchArtist extends Observer {
   /**
@@ -14,10 +15,12 @@ export default class SearchArtist extends Observer {
   }
 
   /**
-   *
+   * @param {string} event
    */
-  update() {
-    this.render();
+  update(event) {
+    if (event == userEvent) {
+      this.render();
+    }
   }
 
   /**

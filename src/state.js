@@ -1,4 +1,5 @@
 import { AppError } from "./base/errors";
+import { artistEvent, errorMessageEvent, userEvent } from "./base/events";
 import Observable from "./base/observable";
 import Artist from "./models/artist";
 import User from "./models/user";
@@ -62,7 +63,7 @@ export default class ObservableState extends Observable {
     this._state.artists.push(...artists);
     this._sortArtistsChronologically();
     this._setEarliestAndLatestReleaseYear();
-    this.notifyObservers(this._state);
+    this.notifyObservers(artistEvent);
   }
 
   /**
@@ -83,8 +84,7 @@ export default class ObservableState extends Observable {
         message = e.message;
       } else if (e.name == "AuthError") {
         message = e.message;
-        this._user = new User();
-        window.location.hash = "";
+        this.removeUser();
       } else {
         message = "Something went wrong. Please retry.";
       }
@@ -99,7 +99,7 @@ export default class ObservableState extends Observable {
     let index = this._state.artists.findIndex((v) => v.id == id);
     this._state.artists.splice(index, 1);
     this._setEarliestAndLatestReleaseYear();
-    this.notifyObservers(this._state);
+    this.notifyObservers(artistEvent);
   }
 
   /**
@@ -119,8 +119,14 @@ export default class ObservableState extends Observable {
     if (accessToken == "") return false;
     if (!this._user.isValidKey(stateKey)) return false;
     this._user.accessToken = accessToken;
-    this.notifyObservers(this._state);
+    this.notifyObservers(userEvent);
     return true;
+  }
+
+  removeUser() {
+    this._user = new User();
+    window.location.hash = "";
+    this.notifyObservers(userEvent);
   }
 
   /**
@@ -170,6 +176,6 @@ export default class ObservableState extends Observable {
    */
   _setErrorMessage(message) {
     this._errorMessage = message;
-    this.notifyObservers(this._state);
+    this.notifyObservers(errorMessageEvent);
   }
 }
