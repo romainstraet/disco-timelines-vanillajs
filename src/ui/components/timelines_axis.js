@@ -1,12 +1,13 @@
-import ObservableState from "../state";
-import Observer from "../base/observer";
-import { elFactory } from "../elements/@element_factory";
+import ObservableState from "../../state";
+import Observer from "../../base/observer";
+import { elFactory } from "../elements/_element_factory";
 import { timelineAxisFirstColEl } from "../elements/timeline_axis_first_col";
 import { timelineAxisYearEl } from "../elements/timeline_axis_year";
 import {
   kTimelineAxisYearWidth,
   kTimelineFirstColWidth,
-} from "../assets/constants";
+} from "../../assets/constants";
+import { artistEvent } from "../../base/events";
 
 export default class TimelineAxis extends Observer {
   /**
@@ -18,10 +19,12 @@ export default class TimelineAxis extends Observer {
   }
 
   /**
-   *
+   * @param {string} event
    */
-  update() {
-    this.render();
+  update(event) {
+    if (event == artistEvent) {
+      this.render();
+    }
   }
 
   /**

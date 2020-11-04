@@ -1,11 +1,12 @@
 import ObservableState from "./state";
-import TimelineAxis from "./components/timelines_axis";
-import Artists from "./components/artists";
+import TimelineAxis from "./ui/components/timelines_axis";
+import Artists from "./ui/components/artists";
+import SearchArtist from "./ui/components/search_artist";
 import SpotifyApi from "./services/spotify_api";
 import Config from "./config";
 import "./assets/style.scss";
 import { initPrepopulatedData } from "./data";
-import SearchArtist from "./components/search_artist";
+import ErrorMessage from "./ui/components/error_message";
 
 // PRE-POPULATE DATA
 let artistsArray = initPrepopulatedData();
@@ -21,11 +22,13 @@ appState.addArtists(artistsArray);
 let timelineAxis = new TimelineAxis(appState);
 let artists = new Artists(appState);
 let searchArtist = new SearchArtist(appState);
+let errorMessage = new ErrorMessage(appState);
 
 // SUBSCRIBE COMPONENTS TO STATE CHANGE
 appState.subscribe(timelineAxis);
 appState.subscribe(artists);
 appState.subscribe(searchArtist);
+appState.subscribe(errorMessage);
 
 // CHECK IF ACCESS TOKEN
 let authRes; // Via callback url with params
@@ -38,3 +41,19 @@ if (window.location.hash !== "") {
 timelineAxis.render();
 artists.render();
 searchArtist.render();
+
+// CONFIGURE MODAL
+let modal = document.getElementById("modal-info");
+let openBtn = document.getElementById("button-open-modal-info");
+let closeBtn = document.getElementById("button-close-modal-info");
+openBtn.onclick = function () {
+  modal.style.display = "flex";
+};
+closeBtn.onclick = function () {
+  modal.style.display = "none";
+};
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};

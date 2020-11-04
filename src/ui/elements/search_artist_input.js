@@ -1,11 +1,13 @@
-import { elFactory } from "./@element_factory";
+import { elFactory } from "./_element_factory";
 
 /**
  * @param {function} onClick
  *@returns {HTMLElement}
  */
 export function searchArtistInput(onClick) {
-  let inputText = elFactory("input", { attributes: { type: "text" } });
+  let inputText = elFactory("input", {
+    attributes: { type: "text", placeholder: "Artist Name" },
+  });
   let inputSubmit = elFactory(
     "button",
     {

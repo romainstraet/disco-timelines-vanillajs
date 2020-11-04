@@ -1,4 +1,4 @@
-import { elFactory } from "../../../src/elements/@element_factory";
+import { elFactory } from "../../../src/ui/elements/_element_factory";
 
 describe("ELEMENT FACTORY FUNCTION", () => {
   test("Should create an HTML Element", async () => {

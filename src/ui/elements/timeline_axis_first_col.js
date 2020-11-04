@@ -1,4 +1,4 @@
-import { elFactory } from "./@element_factory";
+import { elFactory } from "./_element_factory";
 
 /**
  * @returns {HTMLElement}

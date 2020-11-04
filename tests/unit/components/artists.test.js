@@ -1,8 +1,8 @@
 import ObservableState from "../../../src/state";
 import Observer from "../../../src/base/observer";
-import TimelineAxis from "../../../src/components/timelines_axis";
+import TimelineAxis from "../../../src/ui/components/timelines_axis";
 import { artists, albums } from "../_helpers/mock_data";
-import Artists from "../../../src/components/artists";
+import Artists from "../../../src/ui/components/artists";
 import Config from "../../../src/config";
 import SpotifyApi from "../../../src/services/spotify_api.js";
 
@@ -92,6 +92,11 @@ describe("ARTISTS OBSERVER CLASS", () => {
         let button = document.getElementsByClassName("button-remove");
         expect(button.length).toBe(2);
         expect(button[0].getAttribute("data-artist-id")).toBe(_artists[1].id);
+        //@ts-ignore
+        expect(button[0].onclick).not.toBeUndefined();
+        //@ts-ignore
+        await button[0].onclick();
+        expect(appState.artists).not.toContain(_artists[1].id);
       });
 
       test("Second child should contain the album of the artist", async () => {
@@ -103,6 +108,15 @@ describe("ARTISTS OBSERVER CLASS", () => {
         expect(
           discoEl.getElementsByClassName("timeline-artist-disco-album").length
         ).toBe(4);
+      });
+
+      test("First child should contain 'add artist' if no artist in state", async () => {
+        appState = new ObservableState(spotifyApi);
+        new Artists(appState).render();
+        let firstColEl1 = document.getElementsByClassName(
+          "timeline-artist-first-col"
+        )[0];
+        expect(firstColEl1.innerHTML.toLowerCase()).toContain("add an artist");
       });
     });
 

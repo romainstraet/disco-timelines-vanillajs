@@ -5,6 +5,7 @@
 !/.gitignore
 !.vscode
 
+coverage
 node_modules
 /config.js
 firebase.json

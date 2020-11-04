@@ -1,5 +1,5 @@
-import Artist from "../models/artist";
-import { elFactory } from "./@element_factory";
+import Artist from "../../models/artist";
+import { elFactory } from "./_element_factory";
 import { artistDiscoEl } from "./artist_disco";
 import { artistFirstColEl } from "./artist_first_col";
 import { artistRemoveButton } from "./artist_remove";
@@ -18,7 +18,7 @@ export function artistEl(artist, startYear, onRemove) {
   };
 
   let removeButtonChild = artistRemoveButton(artist.id);
-  removeButtonChild.addEventListener("click", () => onRemove());
+  removeButtonChild.onclick = () => onRemove();
 
   let firstColChild = artistFirstColEl(artist);
   firstColChild.appendChild(removeButtonChild);

@@ -39,16 +39,16 @@ test('On sign on Spotify"', async (browser) => {
   //   .contains("Log on Spotify to add an artist");
 
   // He retries and now he can search for an artist
-  await browser.navigateTo("http://localhost:8080/");
-  await setStateKey();
-  await browser.navigateTo(
-    "http://localhost:8080/#access_token=JjscbueJSjsJ&token_type=Bearer&expires_in=3600&state=123"
-  );
+  // await browser.navigateTo("http://localhost:8080/");
+  // await setStateKey();
+  // await browser.navigateTo(
+  //   "http://localhost:8080/#access_token=JjscbueJSjsJ&token_type=Bearer&expires_in=3600&state=123"
+  // );
 
-  searchArtist = Selector("#search-artist");
-  await browser
-    .expect(searchArtist.innerText)
-    .notContains("Sign on Spotify to add an artist")
-    .expect(searchArtist.innerText)
-    .contains("Add Artist");
+  // searchArtist = Selector("#search-artist");
+  // await browser
+  //   .expect(searchArtist.innerText)
+  //   .notContains("Sign on Spotify to add an artist")
+  //   .expect(searchArtist.innerText)
+  //   .contains("Add Artist");
 });
