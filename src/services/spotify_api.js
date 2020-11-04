@@ -88,6 +88,7 @@ export default class SpotifyApi {
     });
 
     let body = await res.json();
+    console.log(body.artists.items);
 
     return new Artist(body.artists.items[0]);
   }
@@ -112,7 +113,6 @@ export default class SpotifyApi {
     let round = Math.ceil(res.total / 50);
 
     for (let i = 1; i < round; i++) {
-      console.log(i, i * 50, round);
       let url2 = url + "&offset=" + i * 50;
       let res2 = await this._fetchAlbums(url2, accessToken);
       artistDisco.push(...res2.items);

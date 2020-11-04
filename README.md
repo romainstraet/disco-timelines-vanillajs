@@ -15,13 +15,12 @@ website based on **TDD** and on a **frameworkless** philosophy. This project has
 ### To Do
 
 - [x] Make design responsive and enhance some styling (v0.2)
-- [ ] Fetch more than 50 albums when appropriate (e.g. Bob Dylan)
-    - *Spotify returns max 50 album objects on each request. Currently, the app only fetches those 50 albums. Hence, If an artist has released more than 50 albums, the artist's timeline is incomplete.*
+- [x] Fetch more than 50 albums when appropriate (e.g. Bob Dylan)
 - [ ] Add a "did you mean...?" functionnality
-    - *When searching for an artist, the app only consider the first result of the array of artists returns by the Spotify API. However, there are some cases where the first result is not the actual searched artist. Hence, the app could show the other results to let the user verify its research.*
+  - _When searching for an artist, the app only consider the first result of the array of artists returns by the Spotify API. However, there are some cases where the first result is not the actual searched artist. Hence, the app could show the other results to let the user verify its research._
 - [ ] Handle errors and mis-use
-    - *Currently, the app does not handle error at all (e.g. network, authentification, artist not found, etc.), nor mis-use (e.g. adding same artist multiple times)*
+  - _Currently, the app does not handle error at all (e.g. network, authentification, artist not found, etc.), nor mis-use (e.g. adding same artist multiple times)_
 - [ ] Increase performance
-    - *Until now, the focus has been put on make the app works without any performance consideration (e.g. no focus on lazy-loading, page events, etc.)*
+  - _Until now, the focus has been put on make the app works without any performance consideration (e.g. no focus on lazy-loading, page events, etc.)_
 - [ ] Increase test coverage and acceptance tests
-    - *Test coverage is already high since the app has been based on a TDD approach. It could however be improved.*
+  - _Test coverage is already high since the app has been based on a TDD approach. It could however be improved._
