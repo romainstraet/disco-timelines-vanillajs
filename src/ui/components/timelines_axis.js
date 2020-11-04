@@ -1,12 +1,12 @@
-import ObservableState from "../state";
-import Observer from "../base/observer";
-import { elFactory } from "../elements/@element_factory";
+import ObservableState from "../../state";
+import Observer from "../../base/observer";
+import { elFactory } from "../elements/_element_factory";
 import { timelineAxisFirstColEl } from "../elements/timeline_axis_first_col";
 import { timelineAxisYearEl } from "../elements/timeline_axis_year";
 import {
   kTimelineAxisYearWidth,
   kTimelineFirstColWidth,
-} from "../assets/constants";
+} from "../../assets/constants";
 
 export default class TimelineAxis extends Observer {
   /**

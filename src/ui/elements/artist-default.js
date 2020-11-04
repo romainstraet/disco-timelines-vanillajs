@@ -1,7 +1,5 @@
-import Artist from "../models/artist";
-import { elFactory } from "./@element_factory";
-import { artistDiscoEl } from "./artist_disco";
-import { artistFirstColEl } from "./artist_first_col";
+import { elFactory } from "./_element_factory";
+
 
 /**
 

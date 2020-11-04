@@ -2,7 +2,7 @@ import ObservableState from "../../../src/state";
 import Observer from "../../../src/base/observer";
 import Config from "../../../src/config";
 import SpotifyApi from "../../../src/services/spotify_api.js";
-import SearchArtist from "../../../src/components/search_artist";
+import SearchArtist from "../../../src/ui/components/search_artist";
 
 let spotifyApi = new SpotifyApi(Config.Spotify);
 
