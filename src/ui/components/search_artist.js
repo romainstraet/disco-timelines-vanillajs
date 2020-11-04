@@ -44,6 +44,4 @@ export default class SearchArtist extends Observer {
     // manipulate Dom
     document.getElementById("search-artist").replaceWith(component);
   }
-
-  _renderSearchArtistInputBox() {}
 }

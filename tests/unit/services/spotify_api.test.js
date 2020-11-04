@@ -1,8 +1,13 @@
+import Artist from "../../../src/models/artist";
 import SpotifyApi from "../../../src/services/spotify_api";
+import { albums, artists } from "../_helpers/mock_data";
 import {
   mockWindowLocation,
   resetWindowlocation,
 } from "../_helpers/mock_location_assign";
+
+let _artists = artists();
+let _albums = albums();
 
 describe("SPOTIFY API SERVICE CLASS", () => {
   test("Should be instantiated with a Config parameters", async () => {
@@ -46,6 +51,17 @@ describe("SPOTIFY API SERVICE CLASS", () => {
       let response = api.getHashParamsFromCallbackUrl(hashUrl);
       expect(response.accessToken).toBe("NwAExzBV3O2Tk");
       expect(response.state).toBe("123");
+    });
+
+    describe("Get artist with discography method", () => {
+      test("", async () => {
+        api._searchArtist = () => _artists[0];
+        api._getDiscography = () => _albums[1];
+        let res = await api.getArtistWithDiscography("foo", "bar");
+        expect(res instanceof Artist).toBeTruthy();
+        expect(res.name).toBe(_artists[0].name);
+        expect(res.discography.length).toBe(_albums[1].length);
+      });
     });
   });
 });
