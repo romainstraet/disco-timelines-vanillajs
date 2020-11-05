@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <title>Disco-Timelines</title>
+  </head>
+  <body>
+    <!-- App   -->
+    <div id="app">
+      <nav>
+        <h1>
+          💿 Discography Timelines
+          <a href="#" id="button-open-modal-info" class="button-modal-info"
+            >more info</a
+          >
+        </h1>
+      </nav>
+      <div id="search-artist"></div>
+      <div id="error-message"></div>
+      <div id="timeline-axis"></div>
+      <div id="timeline-artists"></div>
+    </div>
+    <!-- Modal  -->
+    <div id="modal-info" class="modal" style="display: none">
+      <div class="modal-content">
+        <span id="button-close-modal-info" class="close">&times;</span>
+        <p>
+          <mark>Discography Timelines</mark> is a personal project aiming to
+          present every album released by an artist on a timeline (based on the
+          release date of the album).
+        </p>
+        <p>
+          The app allows users to add the discography of different artists of
+          their choice by consuming the
+          <mark
+            ><a
+              href="https://developer.spotify.com/documentation/web-api/"
+              target="_blank"
+              rel="noopener"
+              >Spotify Web API</a
+            ></mark
+          >.
+        </p>
+        <p style="margin-bottom: 40px">
+          From a technical point of view, the goal was to build a front-end only
+          website based on a
+          <mark>frameworkless</mark> philosophy. This project has therefore been
+          built with HTML, CSS and <mark>Vanilla Javascript</mark> only.
+        </p>
+
+        <div class="branded-resources">
+          <img src="./icons/github.svg" />
+          <p>
+            <mark
+              ><a
+                href="https://github.com/romainstraet/disco-timelines-vanillajs"
+                target="_blank"
+                rel="noopener"
+                >Repository</a
+              ></mark
+            >
+          </p>
+        </div>
+        <div class="branded-resources">
+          <img src="./icons/github.svg" />
+          <p>
+            <mark
+              ><a
+                href="https://github.com/romainstraet"
+                target="_blank"
+                rel="noopener"
+                >Personal Page</a
+              ></mark
+            >
+          </p>
+        </div>
+        <div class="branded-resources">
+          <img src="./icons/linkedin.svg" />
+          <p>
+            <mark
+              ><a
+                href="https://www.linkedin.com/in/romain-straet-b6860627/"
+                target="_blank"
+                rel="noopener"
+                >Romain Straet</a
+              ></mark
+            >
+          </p>
+        </div>
+        <div class="branded-resources">
+          <img src="./icons/instagram.svg" />
+          <p>
+            <mark
+              ><a
+                href="https://www.instagram.com/belgianguycoding/"
+                target="_blank"
+                rel="noopener"
+                >BelgianGuyCoding</a
+              ></mark
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
